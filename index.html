@@ -1368,7 +1368,29 @@
 </head>
 <body>
 <!-- ── NAV ── -->
-<nav>
+  <script>
+      (function() {
+            var key = 'onehalf_academy_access';
+            var granted = sessionStorage.getItem(key);
+            if (!granted) {
+                    var pass = prompt(
+                              'ONE HALF ACADEMY\n\nIngresa el código de acceso del equipo:'
+                            );
+                    var validCodes = ['NINJA2024', 'ONEHALF', 'WORKSPACE'];
+                    if (!pass || validCodes.indexOf(pass.toUpperCase()) === -1) {
+                              document.body.innerHTML =
+                                          '<div style="background:#0A0A0A;color:#FFD93D;' +
+                                          'height:100vh;display:flex;align-items:center;' +
+                                          'justify-content:center;font-family:monospace;' +
+                                          'font-size:13px;letter-spacing:0.2em;text-transform:uppercase;">' +
+                                          'Acceso no autorizado</div>';
+                              return;
+                    }
+                            sessionStorage.setItem(key, 'true');
+            }
+      })();
+  </script>
+  <nav>
   <a href="#" class="nav-logo">ONE <span>HALF</span> ACADEMY</a>
   <a href="#levels" class="nav-pill">Empezar misión →</a>
 </nav>
