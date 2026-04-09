@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+  <html>
+  <head>
+    <meta charset="UTF-8">
+    <meta http-equiv="refresh" content="0; url=https://jmontoya-OneHalf.github.io/ninja-academy">
+    <title>ONE HALF ACADEMY</title>
+    <style>
+      * { margin: 0; padding: 0; box-sizing: border-box; }
+    body {
+            background: #0A0A0A;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      min-height: 100vh;
+      font-family: 'DM Sans', sans-serif;
+}
+    .loader {
+            text-align: center;
+      color: #FFD93D;
+      }
+    .loader-title {
+            font-size: 13px;
+      letter-spacing: 0.3em;
+      text-transform: uppercase;
+      color: #FFD93D;
+            margin-bottom: 24px;
+      font-family: monospace;
+}
+    .loader-bar-wrap {
+            width: 200px;
+      height: 2px;
+      background: rgba(255,255,255,0.1);
+      margin: 0 auto;
+      overflow: hidden;
+}
+    .loader-bar {
+            height: 100%;
+      background: #FFD93D;
+            animation: load 0.8s ease-out forwards;
+}
+    @keyframes load {
+            from { width: 0%; }
+      to   { width: 100%; }
+}
+  </style>
+    </head>
+    <body>
+      <div class="loader">
+        <div class="loader-title">ONE HALF ACADEMY</div>
+        <div class="loader-bar-wrap">
+          <div class="loader-bar"></div>
+        </div>
+      </div>
+      <script>
+        setTimeout(function() {
+          window.location.replace(
+            'https://jmontoya-OneHalf.github.io/ninja-academy'
+          );
+}, 800);
+  </script>
+    </body>
+    </html>
