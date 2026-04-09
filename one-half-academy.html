@@ -1,0 +1,2055 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>ONE HALF ACADEMY</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=DM+Sans:ital,opsz,wght@0,9..40,300;0,9..40,400;0,9..40,500;1,9..40,300&family=DM+Mono:wght@300;400&display=swap" rel="stylesheet">
+<style>
+  /* ============================================
+     ONE HALF ACADEMY — Design System
+     Brand: Minimal · Athletic · Contemporary
+     Palette: #0A0A0A · #F5F2EC · #FFD93D · #C8C8C8
+  ============================================ */
+
+  :root {
+    --black:     #0A0A0A;
+    --offwhite:  #F5F2EC;
+    --cream:     #EDE9E0;
+    --yellow:    #FFD93D;
+    --mid:       #1A1A1A;
+    --gray:      #888888;
+    --lightgray: #C8C8C8;
+    --border:    rgba(255,255,255,0.08);
+
+    --font-display: 'Bebas Neue', sans-serif;
+    --font-body:    'DM Sans', sans-serif;
+    --font-mono:    'DM Mono', monospace;
+
+    --ease-out: cubic-bezier(0.16, 1, 0.3, 1);
+    --ease-spring: cubic-bezier(0.34, 1.56, 0.64, 1);
+  }
+
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+  html { scroll-behavior: smooth; }
+
+  body {
+    background: var(--black);
+    color: var(--offwhite);
+    font-family: var(--font-body);
+    font-size: 16px;
+    line-height: 1.6;
+    overflow-x: hidden;
+    -webkit-font-smoothing: antialiased;
+  }
+
+  /* ── GRAIN OVERLAY ── */
+  body::before {
+    content: '';
+    position: fixed;
+    inset: 0;
+    background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noise)' opacity='0.04'/%3E%3C/svg%3E");
+    pointer-events: none;
+    z-index: 1000;
+    opacity: 0.4;
+  }
+
+  /* ── SCROLLBAR ── */
+  ::-webkit-scrollbar { width: 3px; }
+  ::-webkit-scrollbar-track { background: var(--black); }
+  ::-webkit-scrollbar-thumb { background: var(--yellow); border-radius: 2px; }
+
+  /* ============================================
+     NAV
+  ============================================ */
+  nav {
+    position: fixed;
+    top: 0; left: 0; right: 0;
+    z-index: 100;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 20px 40px;
+    background: rgba(10,10,10,0.85);
+    backdrop-filter: blur(20px);
+    border-bottom: 1px solid var(--border);
+  }
+
+  .nav-logo {
+    font-family: var(--font-display);
+    font-size: 22px;
+    letter-spacing: 0.15em;
+    color: var(--offwhite);
+    text-decoration: none;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+  }
+
+  .nav-logo span {
+    color: var(--yellow);
+  }
+
+  .nav-pill {
+    background: var(--yellow);
+    color: var(--black);
+    font-family: var(--font-mono);
+    font-size: 11px;
+    font-weight: 400;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    padding: 7px 16px;
+    border-radius: 100px;
+    text-decoration: none;
+    transition: all 0.2s var(--ease-out);
+  }
+
+  .nav-pill:hover {
+    background: var(--offwhite);
+    transform: translateY(-1px);
+  }
+
+  /* ============================================
+     HERO
+  ============================================ */
+  .hero {
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-end;
+    padding: 120px 40px 60px;
+    position: relative;
+    overflow: hidden;
+  }
+
+  /* Animated diagonal lines background */
+  .hero::after {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background: 
+      repeating-linear-gradient(
+        -55deg,
+        transparent,
+        transparent 80px,
+        rgba(255,255,255,0.012) 80px,
+        rgba(255,255,255,0.012) 81px
+      );
+    pointer-events: none;
+  }
+
+  .hero-eyebrow {
+    font-family: var(--font-mono);
+    font-size: 11px;
+    letter-spacing: 0.25em;
+    text-transform: uppercase;
+    color: var(--yellow);
+    margin-bottom: 24px;
+    opacity: 0;
+    transform: translateY(20px);
+    animation: fadeUp 0.8s var(--ease-out) 0.2s forwards;
+    display: flex;
+    align-items: center;
+    gap: 16px;
+  }
+
+  .hero-eyebrow::before {
+    content: '';
+    display: block;
+    width: 32px;
+    height: 1px;
+    background: var(--yellow);
+  }
+
+  .hero-title {
+    font-family: var(--font-display);
+    font-size: clamp(72px, 13vw, 180px);
+    line-height: 0.9;
+    letter-spacing: -0.01em;
+    color: var(--offwhite);
+    opacity: 0;
+    transform: translateY(40px);
+    animation: fadeUp 1s var(--ease-out) 0.4s forwards;
+  }
+
+  .hero-title .accent {
+    color: var(--yellow);
+    display: block;
+  }
+
+  .hero-title .stroke {
+    -webkit-text-stroke: 1px var(--offwhite);
+    color: transparent;
+  }
+
+  .hero-bottom {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-end;
+    margin-top: 48px;
+    opacity: 0;
+    animation: fadeUp 0.8s var(--ease-out) 0.8s forwards;
+  }
+
+  .hero-claim {
+    font-size: 15px;
+    font-weight: 300;
+    color: var(--gray);
+    max-width: 320px;
+    line-height: 1.7;
+    font-style: italic;
+  }
+
+  .hero-claim strong {
+    color: var(--offwhite);
+    font-style: normal;
+    font-weight: 400;
+  }
+
+  .hero-cta {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-end;
+    gap: 12px;
+  }
+
+  .btn-primary {
+    display: inline-flex;
+    align-items: center;
+    gap: 12px;
+    background: var(--yellow);
+    color: var(--black);
+    font-family: var(--font-mono);
+    font-size: 12px;
+    letter-spacing: 0.15em;
+    text-transform: uppercase;
+    text-decoration: none;
+    padding: 16px 28px;
+    border: none;
+    cursor: pointer;
+    transition: all 0.25s var(--ease-out);
+    position: relative;
+    overflow: hidden;
+  }
+
+  .btn-primary::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background: var(--black);
+    transform: translateX(-101%);
+    transition: transform 0.3s var(--ease-out);
+  }
+
+  .btn-primary:hover::before { transform: translateX(0); }
+  .btn-primary:hover { color: var(--yellow); }
+  .btn-primary:hover .btn-arrow { transform: translateX(4px); }
+
+  .btn-primary span, .btn-primary .btn-arrow {
+    position: relative;
+    z-index: 1;
+    transition: transform 0.25s var(--ease-out);
+  }
+
+  .btn-secondary {
+    font-family: var(--font-mono);
+    font-size: 11px;
+    letter-spacing: 0.15em;
+    text-transform: uppercase;
+    color: var(--gray);
+    text-decoration: none;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    transition: color 0.2s;
+  }
+
+  .btn-secondary:hover { color: var(--offwhite); }
+
+  /* Scroll indicator */
+  .scroll-hint {
+    position: absolute;
+    bottom: 30px;
+    left: 50%;
+    transform: translateX(-50%);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 8px;
+    opacity: 0;
+    animation: fadeUp 0.6s var(--ease-out) 1.4s forwards;
+  }
+
+  .scroll-line {
+    width: 1px;
+    height: 48px;
+    background: linear-gradient(to bottom, var(--yellow), transparent);
+    animation: scrollPulse 2s ease-in-out infinite;
+  }
+
+  .scroll-label {
+    font-family: var(--font-mono);
+    font-size: 9px;
+    letter-spacing: 0.3em;
+    text-transform: uppercase;
+    color: var(--gray);
+    writing-mode: vertical-lr;
+  }
+
+  /* ============================================
+     MARQUEE STRIP
+  ============================================ */
+  .marquee-strip {
+    background: var(--yellow);
+    padding: 12px 0;
+    overflow: hidden;
+    position: relative;
+  }
+
+  .marquee-track {
+    display: flex;
+    gap: 0;
+    width: max-content;
+    animation: marquee 22s linear infinite;
+  }
+
+  .marquee-item {
+    font-family: var(--font-display);
+    font-size: 13px;
+    letter-spacing: 0.2em;
+    color: var(--black);
+    padding: 0 40px;
+    white-space: nowrap;
+    text-transform: uppercase;
+  }
+
+  .marquee-dot {
+    color: var(--black);
+    opacity: 0.4;
+  }
+
+  /* ============================================
+     SECTION BASE
+  ============================================ */
+  section {
+    padding: 100px 40px;
+  }
+
+  .section-label {
+    font-family: var(--font-mono);
+    font-size: 11px;
+    letter-spacing: 0.3em;
+    text-transform: uppercase;
+    color: var(--yellow);
+    margin-bottom: 16px;
+    display: flex;
+    align-items: center;
+    gap: 12px;
+  }
+
+  .section-label::after {
+    content: '';
+    display: block;
+    flex: 1;
+    max-width: 40px;
+    height: 1px;
+    background: var(--yellow);
+    opacity: 0.5;
+  }
+
+  .section-title {
+    font-family: var(--font-display);
+    font-size: clamp(36px, 5vw, 64px);
+    line-height: 1;
+    letter-spacing: 0.02em;
+    color: var(--offwhite);
+    margin-bottom: 16px;
+  }
+
+  .section-sub {
+    font-size: 15px;
+    font-weight: 300;
+    color: var(--gray);
+    max-width: 480px;
+    line-height: 1.8;
+  }
+
+  /* ============================================
+     STORY SECTION
+  ============================================ */
+  .story {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 80px;
+    align-items: center;
+    background: var(--mid);
+    border-top: 1px solid var(--border);
+    border-bottom: 1px solid var(--border);
+  }
+
+  .story-text { }
+
+  .story-stat-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 1px;
+    background: var(--border);
+    border: 1px solid var(--border);
+  }
+
+  .story-stat {
+    background: var(--black);
+    padding: 32px;
+    position: relative;
+    overflow: hidden;
+    transition: background 0.3s;
+  }
+
+  .story-stat:hover { background: #111; }
+
+  .story-stat-num {
+    font-family: var(--font-display);
+    font-size: 52px;
+    line-height: 1;
+    color: var(--yellow);
+    display: block;
+    margin-bottom: 8px;
+  }
+
+  .story-stat-label {
+    font-size: 12px;
+    font-weight: 300;
+    color: var(--gray);
+    letter-spacing: 0.05em;
+    line-height: 1.5;
+  }
+
+  /* ============================================
+     LEVELS — The three paths
+  ============================================ */
+  .levels {
+    background: var(--black);
+  }
+
+  .levels-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-end;
+    margin-bottom: 60px;
+  }
+
+  .levels-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 1px;
+    background: var(--border);
+    border: 1px solid var(--border);
+  }
+
+  .level-card {
+    background: var(--black);
+    padding: 40px 32px;
+    position: relative;
+    overflow: hidden;
+    cursor: pointer;
+    transition: all 0.35s var(--ease-out);
+    display: flex;
+    flex-direction: column;
+  }
+
+  .level-card::before {
+    content: '';
+    position: absolute;
+    top: 0; left: 0;
+    width: 100%;
+    height: 2px;
+    background: var(--yellow);
+    transform: scaleX(0);
+    transform-origin: left;
+    transition: transform 0.4s var(--ease-out);
+  }
+
+  .level-card:hover::before { transform: scaleX(1); }
+  .level-card:hover { background: #0f0f0f; }
+  .level-card:hover .level-num { color: var(--yellow); }
+  .level-card:hover .level-arrow { opacity: 1; transform: translateX(0); }
+
+  .level-num {
+    font-family: var(--font-display);
+    font-size: 80px;
+    line-height: 1;
+    color: rgba(255,255,255,0.06);
+    transition: color 0.3s;
+    margin-bottom: 24px;
+    position: relative;
+    z-index: 1;
+  }
+
+  .level-badge {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    font-family: var(--font-mono);
+    font-size: 10px;
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    color: var(--gray);
+    border: 1px solid rgba(255,255,255,0.1);
+    padding: 5px 12px;
+    border-radius: 100px;
+    margin-bottom: 20px;
+    width: fit-content;
+  }
+
+  .level-badge-dot {
+    width: 6px;
+    height: 6px;
+    border-radius: 50%;
+    background: var(--yellow);
+    flex-shrink: 0;
+  }
+
+  .level-title {
+    font-family: var(--font-display);
+    font-size: 28px;
+    letter-spacing: 0.05em;
+    color: var(--offwhite);
+    margin-bottom: 12px;
+    line-height: 1.1;
+  }
+
+  .level-sub {
+    font-size: 13px;
+    font-weight: 300;
+    color: var(--gray);
+    line-height: 1.7;
+    margin-bottom: 28px;
+    flex: 1;
+  }
+
+  .level-tools {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 6px;
+    margin-bottom: 28px;
+  }
+
+  .tool-chip {
+    font-family: var(--font-mono);
+    font-size: 10px;
+    letter-spacing: 0.1em;
+    color: var(--lightgray);
+    background: rgba(255,255,255,0.05);
+    padding: 4px 10px;
+    border: 1px solid rgba(255,255,255,0.08);
+    text-transform: uppercase;
+  }
+
+  .level-nps {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding-top: 24px;
+    border-top: 1px solid var(--border);
+  }
+
+  .level-nps-val {
+    font-family: var(--font-display);
+    font-size: 22px;
+    color: var(--yellow);
+  }
+
+  .level-nps-label {
+    font-family: var(--font-mono);
+    font-size: 10px;
+    color: var(--gray);
+    letter-spacing: 0.15em;
+    text-transform: uppercase;
+  }
+
+  .level-arrow {
+    opacity: 0;
+    transform: translateX(-8px);
+    transition: all 0.3s var(--ease-out);
+    font-size: 20px;
+    color: var(--yellow);
+  }
+
+  /* ============================================
+     TOOLS SECTION
+  ============================================ */
+  .tools {
+    background: var(--cream);
+  }
+
+  .tools .section-label { color: var(--black); opacity: 0.5; }
+  .tools .section-label::after { background: var(--black); }
+  .tools .section-title { color: var(--black); }
+  .tools .section-sub { color: #555; }
+
+  .tools-grid {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 2px;
+    margin-top: 60px;
+    background: rgba(0,0,0,0.08);
+    border: 2px solid rgba(0,0,0,0.08);
+  }
+
+  .tool-card {
+    background: var(--offwhite);
+    padding: 40px;
+    position: relative;
+    overflow: hidden;
+    transition: all 0.3s var(--ease-out);
+    cursor: default;
+  }
+
+  .tool-card:hover { background: var(--black); }
+  .tool-card:hover .tool-name { color: var(--offwhite); }
+  .tool-card:hover .tool-desc { color: var(--gray); }
+  .tool-card:hover .tool-icon-wrap { background: var(--yellow); }
+  .tool-card:hover .tool-icon { filter: invert(0); }
+  .tool-card:hover .tool-use-case { border-color: rgba(255,255,255,0.1); color: var(--gray); }
+  .tool-card:hover .tool-use-label { color: var(--yellow); }
+
+  .tool-card-head {
+    display: flex;
+    align-items: flex-start;
+    justify-content: space-between;
+    margin-bottom: 20px;
+  }
+
+  .tool-icon-wrap {
+    width: 48px;
+    height: 48px;
+    background: rgba(0,0,0,0.08);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 22px;
+    transition: background 0.3s;
+    flex-shrink: 0;
+  }
+
+  .tool-level-tag {
+    font-family: var(--font-mono);
+    font-size: 10px;
+    letter-spacing: 0.15em;
+    text-transform: uppercase;
+    color: #888;
+    background: rgba(0,0,0,0.06);
+    padding: 4px 10px;
+    border-radius: 100px;
+  }
+
+  .tool-name {
+    font-family: var(--font-display);
+    font-size: 26px;
+    letter-spacing: 0.05em;
+    color: var(--black);
+    margin-bottom: 10px;
+    transition: color 0.3s;
+  }
+
+  .tool-desc {
+    font-size: 13px;
+    font-weight: 300;
+    color: #555;
+    line-height: 1.7;
+    margin-bottom: 24px;
+    transition: color 0.3s;
+  }
+
+  .tool-use-case {
+    border: 1px solid rgba(0,0,0,0.1);
+    padding: 16px;
+    transition: border-color 0.3s;
+  }
+
+  .tool-use-label {
+    font-family: var(--font-mono);
+    font-size: 9px;
+    letter-spacing: 0.25em;
+    text-transform: uppercase;
+    color: #555;
+    margin-bottom: 6px;
+    transition: color 0.3s;
+  }
+
+  .tool-use-text {
+    font-size: 12px;
+    font-weight: 300;
+    color: #333;
+    line-height: 1.6;
+    font-style: italic;
+    transition: color 0.3s;
+  }
+
+  .tool-card:hover .tool-use-text { color: var(--lightgray); }
+
+  /* ============================================
+     NPS / GAMIFICATION
+  ============================================ */
+  .gamification {
+    background: var(--black);
+    overflow: hidden;
+    position: relative;
+  }
+
+  .gamification::before {
+    content: 'NPS';
+    position: absolute;
+    right: -20px;
+    top: 50%;
+    transform: translateY(-50%);
+    font-family: var(--font-display);
+    font-size: 280px;
+    color: rgba(255,255,255,0.02);
+    pointer-events: none;
+    letter-spacing: -0.05em;
+    line-height: 1;
+  }
+
+  .game-grid {
+    display: grid;
+    grid-template-columns: 1fr 1.4fr;
+    gap: 80px;
+    align-items: start;
+    position: relative;
+    z-index: 1;
+  }
+
+  .nps-table {
+    margin-top: 40px;
+    border: 1px solid var(--border);
+  }
+
+  .nps-row {
+    display: grid;
+    grid-template-columns: 1fr auto;
+    align-items: center;
+    padding: 18px 24px;
+    border-bottom: 1px solid var(--border);
+    transition: background 0.2s;
+  }
+
+  .nps-row:last-child { border-bottom: none; }
+  .nps-row:hover { background: rgba(255,255,255,0.03); }
+
+  .nps-action {
+    font-size: 13px;
+    font-weight: 300;
+    color: var(--lightgray);
+    display: flex;
+    align-items: center;
+    gap: 10px;
+  }
+
+  .nps-action-icon { font-size: 16px; }
+
+  .nps-points {
+    font-family: var(--font-display);
+    font-size: 20px;
+    color: var(--yellow);
+    white-space: nowrap;
+  }
+
+  .badges-section { }
+
+  .badges-label {
+    font-family: var(--font-mono);
+    font-size: 11px;
+    letter-spacing: 0.3em;
+    text-transform: uppercase;
+    color: var(--yellow);
+    margin-bottom: 32px;
+  }
+
+  .badges-list {
+    display: flex;
+    flex-direction: column;
+    gap: 1px;
+  }
+
+  .badge-item {
+    display: grid;
+    grid-template-columns: 64px 1fr auto;
+    align-items: center;
+    gap: 20px;
+    padding: 20px 0;
+    border-bottom: 1px solid var(--border);
+    transition: all 0.2s;
+    cursor: default;
+  }
+
+  .badge-item:last-child { border-bottom: none; }
+  .badge-item:hover .badge-icon-bg { background: var(--yellow); }
+  .badge-item:hover .badge-icon { filter: invert(0); }
+
+  .badge-icon-bg {
+    width: 56px;
+    height: 56px;
+    background: rgba(255,255,255,0.05);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 26px;
+    transition: background 0.3s;
+    flex-shrink: 0;
+  }
+
+  .badge-info {}
+
+  .badge-name {
+    font-family: var(--font-display);
+    font-size: 18px;
+    letter-spacing: 0.05em;
+    color: var(--offwhite);
+    margin-bottom: 3px;
+  }
+
+  .badge-req {
+    font-family: var(--font-mono);
+    font-size: 10px;
+    color: var(--gray);
+    letter-spacing: 0.1em;
+  }
+
+  .badge-threshold {
+    font-family: var(--font-display);
+    font-size: 16px;
+    color: var(--gray);
+    white-space: nowrap;
+  }
+
+  /* ============================================
+     LEADERBOARD PREVIEW
+  ============================================ */
+  .leaderboard-section {
+    background: var(--mid);
+    border-top: 1px solid var(--border);
+  }
+
+  .leaderboard-head {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-end;
+    margin-bottom: 48px;
+  }
+
+  .leaderboard-live {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    font-family: var(--font-mono);
+    font-size: 11px;
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    color: var(--gray);
+  }
+
+  .live-dot {
+    width: 7px;
+    height: 7px;
+    background: #4ade80;
+    border-radius: 50%;
+    animation: livePulse 2s ease-in-out infinite;
+  }
+
+  .leaderboard-table {
+    border: 1px solid var(--border);
+    overflow: hidden;
+  }
+
+  .lb-header {
+    display: grid;
+    grid-template-columns: 60px 1fr 120px 120px 100px;
+    padding: 14px 24px;
+    background: rgba(255,255,255,0.03);
+    border-bottom: 1px solid var(--border);
+  }
+
+  .lb-header-cell {
+    font-family: var(--font-mono);
+    font-size: 9px;
+    letter-spacing: 0.25em;
+    text-transform: uppercase;
+    color: var(--gray);
+  }
+
+  .lb-row {
+    display: grid;
+    grid-template-columns: 60px 1fr 120px 120px 100px;
+    padding: 18px 24px;
+    border-bottom: 1px solid var(--border);
+    align-items: center;
+    transition: background 0.2s;
+    cursor: default;
+  }
+
+  .lb-row:last-child { border-bottom: none; }
+  .lb-row:hover { background: rgba(255,255,255,0.02); }
+
+  .lb-row.top-1 { background: rgba(255, 217, 61, 0.04); }
+  .lb-row.top-1:hover { background: rgba(255, 217, 61, 0.07); }
+
+  .lb-pos {
+    font-family: var(--font-display);
+    font-size: 22px;
+    color: var(--gray);
+  }
+
+  .lb-row.top-1 .lb-pos { color: var(--yellow); }
+
+  .lb-person {
+    display: flex;
+    align-items: center;
+    gap: 14px;
+  }
+
+  .lb-avatar {
+    width: 36px;
+    height: 36px;
+    background: rgba(255,255,255,0.06);
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-family: var(--font-display);
+    font-size: 14px;
+    color: var(--offwhite);
+    flex-shrink: 0;
+  }
+
+  .lb-name {
+    font-size: 14px;
+    font-weight: 400;
+    color: var(--offwhite);
+  }
+
+  .lb-dept {
+    font-size: 11px;
+    font-weight: 300;
+    color: var(--gray);
+  }
+
+  .lb-nps {
+    font-family: var(--font-display);
+    font-size: 20px;
+    color: var(--yellow);
+  }
+
+  .lb-badge {
+    font-size: 13px;
+    color: var(--lightgray);
+    font-weight: 300;
+  }
+
+  .lb-bar-wrap {
+    height: 3px;
+    background: rgba(255,255,255,0.06);
+    border-radius: 2px;
+    overflow: hidden;
+  }
+
+  .lb-bar {
+    height: 100%;
+    background: var(--yellow);
+    border-radius: 2px;
+    transition: width 1.2s var(--ease-out);
+  }
+
+  .lb-update-note {
+    padding: 14px 24px;
+    background: rgba(255,255,255,0.02);
+    border-top: 1px solid var(--border);
+    font-family: var(--font-mono);
+    font-size: 10px;
+    color: var(--gray);
+    letter-spacing: 0.1em;
+    display: flex;
+    justify-content: space-between;
+  }
+
+  /* ============================================
+     ROADMAP — 72H SPRINT
+  ============================================ */
+  .roadmap {
+    background: var(--black);
+    overflow: hidden;
+  }
+
+  .roadmap-timeline {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 1px;
+    background: var(--border);
+    border: 1px solid var(--border);
+    margin-top: 60px;
+  }
+
+  .day-col {
+    background: var(--black);
+    padding: 0;
+    overflow: hidden;
+  }
+
+  .day-header {
+    padding: 28px 28px 24px;
+    border-bottom: 1px solid var(--border);
+    background: rgba(255,255,255,0.02);
+    display: flex;
+    align-items: baseline;
+    gap: 12px;
+  }
+
+  .day-number {
+    font-family: var(--font-display);
+    font-size: 48px;
+    line-height: 1;
+    color: var(--yellow);
+  }
+
+  .day-label {
+    font-family: var(--font-mono);
+    font-size: 10px;
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    color: var(--gray);
+  }
+
+  .day-tasks {
+    padding: 8px 0;
+  }
+
+  .day-task {
+    display: flex;
+    align-items: flex-start;
+    gap: 14px;
+    padding: 16px 28px;
+    border-bottom: 1px solid var(--border);
+    transition: background 0.2s;
+    cursor: default;
+  }
+
+  .day-task:last-child { border-bottom: none; }
+  .day-task:hover { background: rgba(255,255,255,0.02); }
+
+  .task-time {
+    font-family: var(--font-mono);
+    font-size: 10px;
+    color: var(--yellow);
+    letter-spacing: 0.05em;
+    flex-shrink: 0;
+    padding-top: 2px;
+    opacity: 0.8;
+  }
+
+  .task-info {}
+
+  .task-name {
+    font-size: 13px;
+    font-weight: 400;
+    color: var(--offwhite);
+    margin-bottom: 3px;
+    line-height: 1.4;
+  }
+
+  .task-tool {
+    font-family: var(--font-mono);
+    font-size: 9px;
+    letter-spacing: 0.15em;
+    text-transform: uppercase;
+    color: var(--gray);
+  }
+
+  /* ============================================
+     AGENTS SECTION
+  ============================================ */
+  .agents {
+    background: var(--cream);
+    overflow: hidden;
+  }
+
+  .agents .section-label { color: rgba(0,0,0,0.4); }
+  .agents .section-label::after { background: var(--black); opacity: 0.2; }
+  .agents .section-title { color: var(--black); }
+  .agents .section-sub { color: #555; }
+
+  .agents-scroll {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 2px;
+    margin-top: 60px;
+    background: rgba(0,0,0,0.06);
+    border: 2px solid rgba(0,0,0,0.06);
+  }
+
+  .agent-card {
+    background: var(--offwhite);
+    padding: 36px 32px;
+    position: relative;
+    overflow: hidden;
+    transition: all 0.3s var(--ease-out);
+  }
+
+  .agent-card:hover { background: var(--black); }
+  .agent-card:hover .agent-name { color: var(--offwhite); }
+  .agent-card:hover .agent-role { color: var(--yellow); border-color: rgba(255,217,61,0.2); }
+  .agent-card:hover .agent-desc { color: var(--gray); }
+  .agent-card:hover .agent-task-label { color: var(--yellow); }
+  .agent-card:hover .agent-task-text { color: var(--lightgray); border-color: rgba(255,255,255,0.08); }
+  .agent-card:hover .agent-icon-bg { background: var(--yellow); }
+
+  .agent-icon-bg {
+    width: 44px;
+    height: 44px;
+    background: rgba(0,0,0,0.08);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 20px;
+    margin-bottom: 20px;
+    transition: background 0.3s;
+  }
+
+  .agent-role {
+    display: inline-block;
+    font-family: var(--font-mono);
+    font-size: 9px;
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    color: #666;
+    border: 1px solid rgba(0,0,0,0.1);
+    padding: 4px 10px;
+    border-radius: 100px;
+    margin-bottom: 14px;
+    transition: all 0.3s;
+  }
+
+  .agent-name {
+    font-family: var(--font-display);
+    font-size: 28px;
+    letter-spacing: 0.05em;
+    color: var(--black);
+    margin-bottom: 10px;
+    transition: color 0.3s;
+    line-height: 1;
+  }
+
+  .agent-desc {
+    font-size: 12px;
+    font-weight: 300;
+    color: #555;
+    line-height: 1.7;
+    margin-bottom: 20px;
+    transition: color 0.3s;
+  }
+
+  .agent-task-label {
+    font-family: var(--font-mono);
+    font-size: 9px;
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    color: #666;
+    margin-bottom: 8px;
+    transition: color 0.3s;
+  }
+
+  .agent-task-text {
+    font-size: 12px;
+    font-weight: 300;
+    color: #333;
+    line-height: 1.6;
+    font-style: italic;
+    border-left: 2px solid rgba(0,0,0,0.1);
+    padding-left: 12px;
+    transition: all 0.3s;
+  }
+
+  /* ============================================
+     CLAIM / CTA FINAL
+  ============================================ */
+  .final-cta {
+    background: var(--yellow);
+    padding: 100px 40px;
+    text-align: center;
+    position: relative;
+    overflow: hidden;
+  }
+
+  .final-cta::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background: repeating-linear-gradient(
+      -45deg,
+      transparent,
+      transparent 40px,
+      rgba(0,0,0,0.03) 40px,
+      rgba(0,0,0,0.03) 41px
+    );
+    pointer-events: none;
+  }
+
+  .cta-inner { position: relative; z-index: 1; }
+
+  .cta-overline {
+    font-family: var(--font-mono);
+    font-size: 11px;
+    letter-spacing: 0.35em;
+    text-transform: uppercase;
+    color: rgba(0,0,0,0.5);
+    margin-bottom: 20px;
+  }
+
+  .cta-title {
+    font-family: var(--font-display);
+    font-size: clamp(48px, 8vw, 96px);
+    line-height: 0.95;
+    color: var(--black);
+    margin-bottom: 28px;
+    letter-spacing: 0.02em;
+  }
+
+  .cta-sub {
+    font-size: 15px;
+    font-weight: 300;
+    color: rgba(0,0,0,0.6);
+    max-width: 400px;
+    margin: 0 auto 40px;
+    line-height: 1.7;
+  }
+
+  .btn-dark {
+    display: inline-flex;
+    align-items: center;
+    gap: 12px;
+    background: var(--black);
+    color: var(--yellow);
+    font-family: var(--font-mono);
+    font-size: 12px;
+    letter-spacing: 0.15em;
+    text-transform: uppercase;
+    text-decoration: none;
+    padding: 18px 36px;
+    border: none;
+    cursor: pointer;
+    transition: all 0.25s var(--ease-out);
+    position: relative;
+    overflow: hidden;
+  }
+
+  .btn-dark::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background: var(--yellow);
+    transform: translateX(-101%);
+    transition: transform 0.3s var(--ease-out);
+  }
+
+  .btn-dark:hover::before { transform: translateX(0); }
+  .btn-dark:hover { color: var(--black); }
+  .btn-dark span, .btn-dark .btn-arrow { position: relative; z-index: 1; }
+
+  /* ============================================
+     FOOTER
+  ============================================ */
+  footer {
+    background: var(--black);
+    border-top: 1px solid var(--border);
+    padding: 40px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+  }
+
+  .footer-brand {
+    font-family: var(--font-display);
+    font-size: 18px;
+    letter-spacing: 0.2em;
+    color: var(--offwhite);
+  }
+
+  .footer-brand span { color: var(--yellow); }
+
+  .footer-claim {
+    font-size: 12px;
+    font-weight: 300;
+    color: var(--gray);
+    font-style: italic;
+  }
+
+  .footer-meta {
+    font-family: var(--font-mono);
+    font-size: 10px;
+    letter-spacing: 0.1em;
+    color: rgba(255,255,255,0.2);
+    text-align: right;
+  }
+
+  /* ============================================
+     KEYFRAMES
+  ============================================ */
+  @keyframes fadeUp {
+    to { opacity: 1; transform: translateY(0); }
+  }
+
+  @keyframes marquee {
+    from { transform: translateX(0); }
+    to   { transform: translateX(-50%); }
+  }
+
+  @keyframes scrollPulse {
+    0%, 100% { opacity: 1; }
+    50%       { opacity: 0.3; }
+  }
+
+  @keyframes livePulse {
+    0%, 100% { opacity: 1; transform: scale(1); }
+    50%       { opacity: 0.5; transform: scale(0.7); }
+  }
+
+  /* ============================================
+     INTERSECTION OBSERVER ANIMATIONS
+  ============================================ */
+  .reveal {
+    opacity: 0;
+    transform: translateY(32px);
+    transition: opacity 0.8s var(--ease-out), transform 0.8s var(--ease-out);
+  }
+
+  .reveal.visible {
+    opacity: 1;
+    transform: translateY(0);
+  }
+
+  .reveal-delay-1 { transition-delay: 0.1s; }
+  .reveal-delay-2 { transition-delay: 0.2s; }
+  .reveal-delay-3 { transition-delay: 0.3s; }
+  .reveal-delay-4 { transition-delay: 0.4s; }
+
+  /* ============================================
+     RESPONSIVE
+  ============================================ */
+  @media (max-width: 900px) {
+    nav { padding: 16px 20px; }
+    section { padding: 64px 20px; }
+
+    .hero { padding: 100px 20px 48px; }
+    .hero-bottom { flex-direction: column; align-items: flex-start; gap: 28px; }
+
+    .story { grid-template-columns: 1fr; gap: 40px; }
+    .story-stat-grid { grid-template-columns: 1fr 1fr; }
+
+    .levels-header { flex-direction: column; align-items: flex-start; gap: 16px; }
+    .levels-grid { grid-template-columns: 1fr; }
+
+    .tools-grid { grid-template-columns: 1fr; }
+
+    .game-grid { grid-template-columns: 1fr; gap: 48px; }
+
+    .lb-header, .lb-row { grid-template-columns: 44px 1fr 80px 80px; }
+    .lb-bar-wrap { display: none; }
+
+    .roadmap-timeline { grid-template-columns: 1fr; }
+
+    .agents-scroll { grid-template-columns: 1fr; }
+
+    footer { flex-direction: column; gap: 16px; text-align: center; }
+    .footer-meta { text-align: center; }
+  }
+</style>
+</head>
+<body>
+
+<!-- ── NAV ── -->
+<nav>
+  <a href="#" class="nav-logo">ONE <span>HALF</span> ACADEMY</a>
+  <a href="#levels" class="nav-pill">Empezar misión →</a>
+</nav>
+
+<!-- ── HERO ── -->
+<section class="hero" id="home">
+  <div class="hero-eyebrow">Google Workspace Training Program</div>
+
+  <h1 class="hero-title">
+    WE ARE<br>
+    <span class="accent">HALF</span>
+    <span class="stroke">THE STORY</span>
+  </h1>
+
+  <div class="hero-bottom">
+    <p class="hero-claim">
+      <strong>The other half is yours.</strong><br>
+      Un programa donde dominar Google Workspace no es una capacitación. Es un estilo de trabajo.
+    </p>
+    <div class="hero-cta">
+      <a href="#levels" class="btn-primary">
+        <span>Iniciar el programa</span>
+        <span class="btn-arrow">→</span>
+      </a>
+      <a href="#roadmap" class="btn-secondary">Ver el sprint de 72H →</a>
+    </div>
+  </div>
+
+  <div class="scroll-hint">
+    <span class="scroll-label">scroll</span>
+    <div class="scroll-line"></div>
+  </div>
+</section>
+
+<!-- ── MARQUEE ── -->
+<div class="marquee-strip">
+  <div class="marquee-track">
+    <span class="marquee-item">Google Tasks <span class="marquee-dot">·</span></span>
+    <span class="marquee-item">Google Chat <span class="marquee-dot">·</span></span>
+    <span class="marquee-item">Gemini AI <span class="marquee-dot">·</span></span>
+    <span class="marquee-item">NotebookLM <span class="marquee-dot">·</span></span>
+    <span class="marquee-item">ONE HALF ACADEMY <span class="marquee-dot">·</span></span>
+    <span class="marquee-item">Nivel Básico <span class="marquee-dot">·</span></span>
+    <span class="marquee-item">Nivel Intermedio <span class="marquee-dot">·</span></span>
+    <span class="marquee-item">Nivel Avanzado <span class="marquee-dot">·</span></span>
+    <span class="marquee-item">Google Tasks <span class="marquee-dot">·</span></span>
+    <span class="marquee-item">Google Chat <span class="marquee-dot">·</span></span>
+    <span class="marquee-item">Gemini AI <span class="marquee-dot">·</span></span>
+    <span class="marquee-item">NotebookLM <span class="marquee-dot">·</span></span>
+    <span class="marquee-item">ONE HALF ACADEMY <span class="marquee-dot">·</span></span>
+    <span class="marquee-item">Nivel Básico <span class="marquee-dot">·</span></span>
+    <span class="marquee-item">Nivel Intermedio <span class="marquee-dot">·</span></span>
+    <span class="marquee-item">Nivel Avanzado <span class="marquee-dot">·</span></span>
+  </div>
+</div>
+
+<!-- ── STORY ── -->
+<section class="story reveal">
+  <div class="story-text">
+    <div class="section-label">El programa</div>
+    <h2 class="section-title">DEL CLIC<br>MUNDANO AL<br>FLUJO TOTAL</h2>
+    <p class="section-sub" style="margin-top:20px;">
+      One Half Academy es el sistema de productividad digital diseñado desde adentro de la marca. No es un curso genérico: es nuestro lenguaje, nuestras herramientas, nuestro ritmo.
+    </p>
+    <p class="section-sub" style="margin-top:16px; font-style:italic; color:#666;">
+      "Entrenamos la mitad técnica. Tú traes la otra mitad: la actitud."
+    </p>
+  </div>
+
+  <div class="story-stat-grid reveal reveal-delay-2">
+    <div class="story-stat">
+      <span class="story-stat-num">72</span>
+      <span class="story-stat-label">horas para montar el ecosistema completo</span>
+    </div>
+    <div class="story-stat">
+      <span class="story-stat-num">3</span>
+      <span class="story-stat-label">niveles de dominio progresivo</span>
+    </div>
+    <div class="story-stat">
+      <span class="story-stat-num">4</span>
+      <span class="story-stat-label">herramientas Google dominadas</span>
+    </div>
+    <div class="story-stat">
+      <span class="story-stat-num">∞</span>
+      <span class="story-stat-label">horas ahorradas por semana al finalizar</span>
+    </div>
+  </div>
+</section>
+
+<!-- ── LEVELS ── -->
+<section class="levels reveal" id="levels">
+  <div class="levels-header">
+    <div>
+      <div class="section-label">Los niveles</div>
+      <h2 class="section-title">EL CAMINO DEL NINJA</h2>
+    </div>
+    <p class="section-sub">Cada nivel desbloquea el siguiente. No hay atajos — hay progresión.</p>
+  </div>
+
+  <div class="levels-grid">
+    <!-- Level 1 -->
+    <div class="level-card reveal reveal-delay-1">
+      <div class="level-num">01</div>
+      <div class="level-badge">
+        <span class="level-badge-dot"></span>
+        Padawan Digital
+      </div>
+      <h3 class="level-title">EL DESPERTAR DEL COLABORADOR</h3>
+      <p class="level-sub">Pasa del caos al orden en 14 días. Organiza, comunica y nunca vuelvas a decir "se me olvidó".</p>
+      <div class="level-tools">
+        <span class="tool-chip">Tasks</span>
+        <span class="tool-chip">Chat</span>
+        <span class="tool-chip">Gemini 101</span>
+        <span class="tool-chip">NotebookLM</span>
+      </div>
+      <div class="level-nps">
+        <div>
+          <div class="level-nps-val">800+</div>
+          <div class="level-nps-label">NPS para graduarse</div>
+        </div>
+        <span class="level-arrow">→</span>
+      </div>
+    </div>
+
+    <!-- Level 2 -->
+    <div class="level-card reveal reveal-delay-2">
+      <div class="level-num">02</div>
+      <div class="level-badge">
+        <span class="level-badge-dot"></span>
+        Arquitecto del Caos
+      </div>
+      <h3 class="level-title">EL FORJADOR DE FLUJOS</h3>
+      <p class="level-sub">Automatiza o muere en el intento. Tasks sistémico, bots en Chat, prompts avanzados y análisis profundo con IA.</p>
+      <div class="level-tools">
+        <span class="tool-chip">Tasks Avanzado</span>
+        <span class="tool-chip">Webhooks</span>
+        <span class="tool-chip">Prompt STAR</span>
+        <span class="tool-chip">NLM Análisis</span>
+      </div>
+      <div class="level-nps">
+        <div>
+          <div class="level-nps-val">1500+</div>
+          <div class="level-nps-label">NPS para graduarse</div>
+        </div>
+        <span class="level-arrow">→</span>
+      </div>
+    </div>
+
+    <!-- Level 3 -->
+    <div class="level-card reveal reveal-delay-3">
+      <div class="level-num">03</div>
+      <div class="level-badge">
+        <span class="level-badge-dot"></span>
+        Sensei Ninja 🥷
+      </div>
+      <h3 class="level-title">EL MAESTRO DEL CONOCIMIENTO</h3>
+      <p class="level-sub">Ya no usas herramientas. Diseñas sistemas. OKRs, bots personalizados, inteligencia organizacional y fábrica de contenido IA.</p>
+      <div class="level-tools">
+        <span class="tool-chip">OKR + Tasks</span>
+        <span class="tool-chip">Bot Custom</span>
+        <span class="tool-chip">Meta-Prompts</span>
+        <span class="tool-chip">NLM Org Brain</span>
+      </div>
+      <div class="level-nps">
+        <div>
+          <div class="level-nps-val">3000+</div>
+          <div class="level-nps-label">NPS para graduarse</div>
+        </div>
+        <span class="level-arrow">→</span>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ── TOOLS ── -->
+<section class="tools reveal" id="tools">
+  <div class="section-label">Las armas</div>
+  <h2 class="section-title">4 HERRAMIENTAS.<br>1 ECOSISTEMA.</h2>
+  <p class="section-sub">Cada tool tiene un rol exacto. Juntas, son tu ventaja competitiva.</p>
+
+  <div class="tools-grid">
+    <div class="tool-card reveal reveal-delay-1">
+      <div class="tool-card-head">
+        <div class="tool-icon-wrap">✓</div>
+        <span class="tool-level-tag">Todos los niveles</span>
+      </div>
+      <h3 class="tool-name">GOOGLE TASKS</h3>
+      <p class="tool-desc">Tu cerebro externo. Del post-it caótico al sistema de mando personal. Organiza, delega y nunca pierdas un compromiso.</p>
+      <div class="tool-use-case">
+        <div class="tool-use-label">Caso real</div>
+        <p class="tool-use-text">"Sprint de equipo donde todas las tareas viven en Tasks, con reporte de burndown automático cada lunes."</p>
+      </div>
+    </div>
+
+    <div class="tool-card reveal reveal-delay-2">
+      <div class="tool-card-head">
+        <div class="tool-icon-wrap">💬</div>
+        <span class="tool-level-tag">Todos los niveles</span>
+      </div>
+      <h3 class="tool-name">GOOGLE CHAT</h3>
+      <p class="tool-desc">Email es el fax del siglo XXI. Spaces, hilos y bots integrados que convierten tu comunicación en un centro de operaciones.</p>
+      <div class="tool-use-case">
+        <div class="tool-use-label">Caso real</div>
+        <p class="tool-use-text">"Webhook que notifica al Space cuando un Sheet crítico se actualiza. Cero follow-ups manuales."</p>
+      </div>
+    </div>
+
+    <div class="tool-card reveal reveal-delay-3">
+      <div class="tool-card-head">
+        <div class="tool-icon-wrap">✦</div>
+        <span class="tool-level-tag">Gemini for Workspace</span>
+      </div>
+      <h3 class="tool-name">GEMINI</h3>
+      <p class="tool-desc">Tu co-redactor, analista y arquitecto de prompts. Con el framework STAR, haces en 30 segundos lo que tomaría 2 horas.</p>
+      <div class="tool-use-case">
+        <div class="tool-use-label">Caso real</div>
+        <p class="tool-use-text">"Resumir 50 hilos de Chat en decisiones, pendientes y responsables. En 90 segundos."</p>
+      </div>
+    </div>
+
+    <div class="tool-card reveal reveal-delay-4">
+      <div class="tool-card-head">
+        <div class="tool-icon-wrap">🧠</div>
+        <span class="tool-level-tag">NotebookLM activo</span>
+      </div>
+      <h3 class="tool-name">NOTEBOOKLM</h3>
+      <p class="tool-desc">El analista que ha leído todos tus documentos. Desde base de conocimiento personal hasta el cerebro colectivo de la organización.</p>
+      <div class="tool-use-case">
+        <div class="tool-use-label">Caso real</div>
+        <p class="tool-use-text">"Cargar 12 minutas de reunión y preguntar: ¿qué compromisos se repiten sin cumplirse?"</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ── GAMIFICATION ── -->
+<section class="gamification reveal" id="nps">
+  <div class="game-grid">
+    <div>
+      <div class="section-label">El juego</div>
+      <h2 class="section-title">NINJA<br>POINTS<br>SYSTEM</h2>
+      <p class="section-sub" style="margin-top:20px;">Cada acción cuenta. Cada entrega suma. El leaderboard es en tiempo real y todos lo ven.</p>
+
+      <div class="nps-table">
+        <div class="nps-row">
+          <span class="nps-action"><span class="nps-action-icon">📦</span> Completar un módulo</span>
+          <span class="nps-points">+100 NPS</span>
+        </div>
+        <div class="nps-row">
+          <span class="nps-action"><span class="nps-action-icon">⚡</span> Entregar antes del plazo</span>
+          <span class="nps-points">+50 NPS</span>
+        </div>
+        <div class="nps-row">
+          <span class="nps-action"><span class="nps-action-icon">🤝</span> Ayudar a un compañero</span>
+          <span class="nps-points">+75 NPS</span>
+        </div>
+        <div class="nps-row">
+          <span class="nps-action"><span class="nps-action-icon">💡</span> Proponer mejora real</span>
+          <span class="nps-points">+150 NPS</span>
+        </div>
+        <div class="nps-row">
+          <span class="nps-action"><span class="nps-action-icon">🏆</span> Score perfecto en quiz</span>
+          <span class="nps-points">+200 NPS</span>
+        </div>
+      </div>
+    </div>
+
+    <div class="badges-section reveal reveal-delay-2">
+      <div class="badges-label">Badges desbloqueables</div>
+      <div class="badges-list">
+        <div class="badge-item">
+          <div class="badge-icon-bg">⚡</div>
+          <div class="badge-info">
+            <div class="badge-name">INICIADO</div>
+            <div class="badge-req">Primer NPS registrado</div>
+          </div>
+          <div class="badge-threshold">1+ NPS</div>
+        </div>
+        <div class="badge-item">
+          <div class="badge-icon-bg">🥋</div>
+          <div class="badge-info">
+            <div class="badge-name">PADAWAN DIGITAL</div>
+            <div class="badge-req">Nivel 1 completado</div>
+          </div>
+          <div class="badge-threshold">800 NPS</div>
+        </div>
+        <div class="badge-item">
+          <div class="badge-icon-bg">⚙️</div>
+          <div class="badge-info">
+            <div class="badge-name">ARQUITECTO</div>
+            <div class="badge-req">Nivel 2 completado</div>
+          </div>
+          <div class="badge-threshold">1500 NPS</div>
+        </div>
+        <div class="badge-item">
+          <div class="badge-icon-bg">🥷</div>
+          <div class="badge-info">
+            <div class="badge-name">SENSEI NINJA</div>
+            <div class="badge-req">Programa completo</div>
+          </div>
+          <div class="badge-threshold">3000 NPS</div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ── LEADERBOARD ── -->
+<section class="leaderboard-section reveal" id="leaderboard">
+  <div class="leaderboard-head">
+    <div>
+      <div class="section-label">Ranking</div>
+      <h2 class="section-title">LEADERBOARD</h2>
+    </div>
+    <div class="leaderboard-live">
+      <span class="live-dot"></span>
+      Se actualiza cada hora vía Apps Script
+    </div>
+  </div>
+
+  <div class="leaderboard-table">
+    <div class="lb-header">
+      <span class="lb-header-cell">#</span>
+      <span class="lb-header-cell">Participante</span>
+      <span class="lb-header-cell">NPS Total</span>
+      <span class="lb-header-cell">Badge</span>
+      <span class="lb-header-cell">Progreso</span>
+    </div>
+
+    <div class="lb-row top-1">
+      <span class="lb-pos">01</span>
+      <div class="lb-person">
+        <div class="lb-avatar">SA</div>
+        <div>
+          <div class="lb-name">Sara Arbeláez</div>
+          <div class="lb-dept">Marketing · Medellín</div>
+        </div>
+      </div>
+      <span class="lb-nps">2,840</span>
+      <span class="lb-badge">⚙️ Arquitecto</span>
+      <div class="lb-bar-wrap"><div class="lb-bar" style="width:94%"></div></div>
+    </div>
+
+    <div class="lb-row">
+      <span class="lb-pos">02</span>
+      <div class="lb-person">
+        <div class="lb-avatar">JM</div>
+        <div>
+          <div class="lb-name">Juan Morales</div>
+          <div class="lb-dept">Operaciones · Bogotá</div>
+        </div>
+      </div>
+      <span class="lb-nps">2,210</span>
+      <span class="lb-badge">⚙️ Arquitecto</span>
+      <div class="lb-bar-wrap"><div class="lb-bar" style="width:73%"></div></div>
+    </div>
+
+    <div class="lb-row">
+      <span class="lb-pos">03</span>
+      <div class="lb-person">
+        <div class="lb-avatar">CV</div>
+        <div>
+          <div class="lb-name">Camila Vargas</div>
+          <div class="lb-dept">Diseño · Medellín</div>
+        </div>
+      </div>
+      <span class="lb-nps">1,950</span>
+      <span class="lb-badge">⚙️ Arquitecto</span>
+      <div class="lb-bar-wrap"><div class="lb-bar" style="width:65%"></div></div>
+    </div>
+
+    <div class="lb-row">
+      <span class="lb-pos">04</span>
+      <div class="lb-person">
+        <div class="lb-avatar">LR</div>
+        <div>
+          <div class="lb-name">Luis Restrepo</div>
+          <div class="lb-dept">Ventas · Bogotá</div>
+        </div>
+      </div>
+      <span class="lb-nps">1,420</span>
+      <span class="lb-badge">🥋 Padawan</span>
+      <div class="lb-bar-wrap"><div class="lb-bar" style="width:47%"></div></div>
+    </div>
+
+    <div class="lb-row">
+      <span class="lb-pos">05</span>
+      <div class="lb-person">
+        <div class="lb-avatar">AN</div>
+        <div>
+          <div class="lb-name">Ana Nieto</div>
+          <div class="lb-dept">RRHH · Medellín</div>
+        </div>
+      </div>
+      <span class="lb-nps">980</span>
+      <span class="lb-badge">🥋 Padawan</span>
+      <div class="lb-bar-wrap"><div class="lb-bar" style="width:32%"></div></div>
+    </div>
+
+    <div class="lb-update-note">
+      <span>⟳ Actualización automática cada hora · Apps Script activo</span>
+      <span>Datos de ejemplo · Conecta tu Google Sheet para datos reales</span>
+    </div>
+  </div>
+</section>
+
+<!-- ── ROADMAP 72H ── -->
+<section class="roadmap reveal" id="roadmap">
+  <div class="section-label">Sprint de ejecución</div>
+  <h2 class="section-title">72 HORAS.<br>TODO EN VIVO.</h2>
+  <p class="section-sub" style="margin-top:16px;">El plan hora por hora para tener el ecosistema completo funcionando en 3 días.</p>
+
+  <div class="roadmap-timeline">
+    <div class="day-col reveal reveal-delay-1">
+      <div class="day-header">
+        <div class="day-number">01</div>
+        <div class="day-label">Los Cimientos<br>Drive + Site + Sheets</div>
+      </div>
+      <div class="day-tasks">
+        <div class="day-task">
+          <span class="task-time">H1</span>
+          <div class="task-info">
+            <div class="task-name">Arquitectura Drive completa</div>
+            <div class="task-tool">Google Drive</div>
+          </div>
+        </div>
+        <div class="day-task">
+          <span class="task-time">H2-3</span>
+          <div class="task-info">
+            <div class="task-name">Sheet Maestro NPS + fórmulas</div>
+            <div class="task-tool">Google Sheets + Apps Script</div>
+          </div>
+        </div>
+        <div class="day-task">
+          <span class="task-time">H4-5</span>
+          <div class="task-info">
+            <div class="task-name">Google Site con 7 páginas</div>
+            <div class="task-tool">Google Sites</div>
+          </div>
+        </div>
+        <div class="day-task">
+          <span class="task-time">H6-7</span>
+          <div class="task-info">
+            <div class="task-name">Form de entregas conectado</div>
+            <div class="task-tool">Google Forms</div>
+          </div>
+        </div>
+        <div class="day-task">
+          <span class="task-time">H8</span>
+          <div class="task-info">
+            <div class="task-name">Publicar Site + verificación</div>
+            <div class="task-tool">Google Sites</div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="day-col reveal reveal-delay-2">
+      <div class="day-header">
+        <div class="day-number">02</div>
+        <div class="day-label">El Contenido<br>Módulos + IA + Prompts</div>
+      </div>
+      <div class="day-tasks">
+        <div class="day-task">
+          <span class="task-time">H1-2</span>
+          <div class="task-info">
+            <div class="task-name">12 Docs de misiones creados</div>
+            <div class="task-tool">Google Docs</div>
+          </div>
+        </div>
+        <div class="day-task">
+          <span class="task-time">H3-4</span>
+          <div class="task-info">
+            <div class="task-name">Contenido Nivel 1 en el Site</div>
+            <div class="task-tool">Google Sites</div>
+          </div>
+        </div>
+        <div class="day-task">
+          <span class="task-time">H5-6</span>
+          <div class="task-info">
+            <div class="task-name">Gem Asistente + Recetario Prompts</div>
+            <div class="task-tool">Gemini for Workspace</div>
+          </div>
+        </div>
+        <div class="day-task">
+          <span class="task-time">H7-8</span>
+          <div class="task-info">
+            <div class="task-name">NotebookLM cargado + Audio Overview</div>
+            <div class="task-tool">NotebookLM</div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="day-col reveal reveal-delay-3">
+      <div class="day-header">
+        <div class="day-number">03</div>
+        <div class="day-label">El Lanzamiento<br>QA + Kick-off + Go Live</div>
+      </div>
+      <div class="day-tasks">
+        <div class="day-task">
+          <span class="task-time">H1-2</span>
+          <div class="task-info">
+            <div class="task-name">QA completo del flujo</div>
+            <div class="task-tool">Testing end-to-end</div>
+          </div>
+        </div>
+        <div class="day-task">
+          <span class="task-time">H3-4</span>
+          <div class="task-info">
+            <div class="task-name">Email + Chat lanzamiento</div>
+            <div class="task-tool">Gmail + Google Chat</div>
+          </div>
+        </div>
+        <div class="day-task">
+          <span class="task-time">H5-6</span>
+          <div class="task-info">
+            <div class="task-name">Kick-off en Google Meet</div>
+            <div class="task-tool">Google Meet · 60 min</div>
+          </div>
+        </div>
+        <div class="day-task">
+          <span class="task-time">H7-8</span>
+          <div class="task-info">
+            <div class="task-name">Space soporte + Dashboard semanal</div>
+            <div class="task-tool">Chat + Sheets</div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ── AGENTS ── -->
+<section class="agents reveal" id="agents">
+  <div class="section-label">Los constructores</div>
+  <h2 class="section-title">LOS 6 AGENTES IA</h2>
+  <p class="section-sub" style="margin-top:16px;">Cada fase del proyecto tiene un Agente especializado. Actívalos en Gemini con su prompt base.</p>
+
+  <div class="agents-scroll">
+    <div class="agent-card reveal reveal-delay-1">
+      <div class="agent-icon-bg">🏗️</div>
+      <div class="agent-role">Técnico · Fase 1</div>
+      <h3 class="agent-name">ARCHIE</h3>
+      <p class="agent-desc">El arquitecto de ecosistemas. Habla en jerarquías y flujos. Todo tiene su lugar antes de existir.</p>
+      <div class="agent-task-label">Tarea crítica</div>
+      <p class="agent-task-text">Diseñar el sitemap del Site y la taxonomía de Drive con permisos por nivel y rol.</p>
+    </div>
+
+    <div class="agent-card reveal reveal-delay-2">
+      <div class="agent-icon-bg">🎨</div>
+      <div class="agent-role">Creativo · Fase 2</div>
+      <h3 class="agent-name">PIXEL</h3>
+      <p class="agent-desc">Piensa como diseñador de videojuegos. Cada módulo es un quest. Siempre pregunta: "¿Es divertido?"</p>
+      <div class="agent-task-label">Tarea crítica</div>
+      <p class="agent-task-text">Crear los 36 enunciados de misiones con narrativa coherente y progresión calibrada.</p>
+    </div>
+
+    <div class="agent-card reveal reveal-delay-3">
+      <div class="agent-icon-bg">⚙️</div>
+      <div class="agent-role">Desarrollador · Fase 3</div>
+      <h3 class="agent-name">SIGMA</h3>
+      <p class="agent-desc">Habla en funciones y scripts. No dice "debería funcionar": dice "el trigger ejecuta en onEdit()."</p>
+      <div class="agent-task-label">Tarea crítica</div>
+      <p class="agent-task-text">Desarrollar el leaderboard automático, el generador de badges y los 3 Sheets interactivos.</p>
+    </div>
+
+    <div class="agent-card reveal reveal-delay-1">
+      <div class="agent-icon-bg">🧠</div>
+      <div class="agent-role">IA Specialist · Fase 3</div>
+      <h3 class="agent-name">NOVA</h3>
+      <p class="agent-desc">Obsesionada con la precisión de los prompts. Habla de Gemini como si lo hubiera diseñado ella.</p>
+      <div class="agent-task-label">Tarea crítica</div>
+      <p class="agent-task-text">Crear la biblioteca de 60+ prompts del programa validados con ejemplos de input/output reales.</p>
+    </div>
+
+    <div class="agent-card reveal reveal-delay-2">
+      <div class="agent-icon-bg">🚀</div>
+      <div class="agent-role">Estratégico · Fase 4</div>
+      <h3 class="agent-name">FELIX</h3>
+      <p class="agent-desc">Mezcla de coach ejecutivo y productor de show. Sabe que el 70% del éxito es comunicación.</p>
+      <div class="agent-task-label">Tarea crítica</div>
+      <p class="agent-task-text">Diseñar el plan de lanzamiento: emails, mensajes Chat, agenda del kick-off y métricas 30/60/90 días.</p>
+    </div>
+
+    <div class="agent-card reveal reveal-delay-3">
+      <div class="agent-icon-bg">🔧</div>
+      <div class="agent-role">Pedagógico · Todas las fases</div>
+      <h3 class="agent-name">CONSTRUCTOR</h3>
+      <p class="agent-desc">El GPS del proyecto. Nunca asume que sabes algo. Cada paso incluye: qué hacer, dónde y qué ver en pantalla.</p>
+      <div class="agent-task-label">Tarea crítica</div>
+      <p class="agent-task-text">Guiar paso a paso los 3 días de construcción completa, desde Drive hasta el Site publicado y vivo.</p>
+    </div>
+  </div>
+</section>
+
+<!-- ── FINAL CTA ── -->
+<section class="final-cta">
+  <div class="cta-inner">
+    <div class="cta-overline">One Half Academy · Google Workspace</div>
+    <h2 class="cta-title">WE BUILT<br>YOUR HALF.</h2>
+    <p class="cta-sub">El ecosistema está listo. Los agentes están activos. El leaderboard te espera.<br>Solo falta tu primera misión.</p>
+    <a href="#levels" class="btn-dark">
+      <span>Comenzar el Nivel 1</span>
+      <span class="btn-arrow">→</span>
+    </a>
+  </div>
+</section>
+
+<!-- ── FOOTER ── -->
+<footer>
+  <div>
+    <div class="footer-brand">ONE <span>HALF</span> ACADEMY</div>
+    <div class="footer-claim" style="margin-top:6px;">"We are half the story. The other half is yours." 💛</div>
+  </div>
+  <div class="footer-meta">
+    Google Workspace · Gemini AI · NotebookLM<br>
+    Medellín · Bogotá · Colombia<br>
+    © One Half 2024
+  </div>
+</footer>
+
+<script>
+  // ── INTERSECTION OBSERVER ──
+  const reveals = document.querySelectorAll('.reveal');
+  const io = new IntersectionObserver((entries) => {
+    entries.forEach(e => {
+      if (e.isIntersecting) {
+        e.target.classList.add('visible');
+        io.unobserve(e.target);
+      }
+    });
+  }, { threshold: 0.08, rootMargin: '0px 0px -40px 0px' });
+
+  reveals.forEach(el => io.observe(el));
+
+  // ── LEADERBOARD BAR ANIMATION ──
+  const barObserver = new IntersectionObserver((entries) => {
+    entries.forEach(e => {
+      if (e.isIntersecting) {
+        const bars = e.target.querySelectorAll('.lb-bar');
+        bars.forEach((bar, i) => {
+          const targetW = bar.style.width;
+          bar.style.width = '0%';
+          setTimeout(() => { bar.style.width = targetW; }, i * 120 + 200);
+        });
+        barObserver.unobserve(e.target);
+      }
+    });
+  }, { threshold: 0.3 });
+
+  const lbTable = document.querySelector('.leaderboard-table');
+  if (lbTable) barObserver.observe(lbTable);
+
+  // ── SMOOTH ANCHOR ──
+  document.querySelectorAll('a[href^="#"]').forEach(a => {
+    a.addEventListener('click', e => {
+      e.preventDefault();
+      const target = document.querySelector(a.getAttribute('href'));
+      if (target) target.scrollIntoView({ behavior: 'smooth', block: 'start' });
+    });
+  });
+
+  // ── NAV SCROLL EFFECT ──
+  const nav = document.querySelector('nav');
+  let lastY = 0;
+  window.addEventListener('scroll', () => {
+    const y = window.scrollY;
+    nav.style.transform = (y > 80 && y > lastY) ? 'translateY(-100%)' : 'translateY(0)';
+    nav.style.transition = 'transform 0.4s cubic-bezier(0.16, 1, 0.3, 1)';
+    lastY = y;
+  }, { passive: true });
+
+  // ── LEVEL CARD CLICK ──
+  document.querySelectorAll('.level-card').forEach((card, i) => {
+    card.addEventListener('click', () => {
+      const sections = ['#tools', '#tools', '#gamification'];
+      const target = document.querySelector(sections[i] || '#tools');
+      if (target) target.scrollIntoView({ behavior: 'smooth', block: 'start' });
+    });
+  });
+</script>
+</body>
+</html>
