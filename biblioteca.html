@@ -1,0 +1,175 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Biblioteca — ONE HALF ACADEMY</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=DM+Sans:ital,opsz,wght@0,9..40,300;0,9..40,400;0,9..40,500;1,9..40,300&family=DM+Mono:wght@300;400&display=swap" rel="stylesheet">
+<style>
+  :root{--black:#0A0A0A;--offwhite:#F5F2EC;--cream:#EDE9E0;--yellow:#FFD93D;--mid:#1A1A1A;--gray:#888888;--lightgray:#C8C8C8;--border:rgba(255,255,255,0.08);--font-display:'Bebas Neue',sans-serif;--font-body:'DM Sans',sans-serif;--font-mono:'DM Mono',monospace}
+  *,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+  html{scroll-behavior:smooth}
+  body{background:var(--black);color:var(--offwhite);font-family:var(--font-body);font-size:16px;line-height:1.6;overflow-x:hidden;-webkit-font-smoothing:antialiased}
+  ::-webkit-scrollbar{width:3px}::-webkit-scrollbar-track{background:var(--black)}::-webkit-scrollbar-thumb{background:var(--yellow);border-radius:2px}
+  nav{position:fixed;top:0;left:0;right:0;z-index:100;display:flex;justify-content:space-between;align-items:center;padding:20px 40px;background:rgba(10,10,10,0.92);backdrop-filter:blur(20px);border-bottom:1px solid var(--border)}
+  .nav-logo{font-family:var(--font-display);font-size:18px;letter-spacing:0.15em;color:var(--offwhite);text-decoration:none}
+  .nav-logo span{color:var(--yellow)}
+  .nav-links{display:flex;align-items:center;gap:32px}
+  .nav-link{font-family:var(--font-mono);font-size:11px;letter-spacing:0.15em;text-transform:uppercase;color:var(--gray);text-decoration:none;transition:color 0.2s}
+  .nav-link:hover{color:var(--offwhite)}.nav-link.active{color:var(--yellow)}
+  .nav-pill{background:var(--yellow);color:var(--black);font-family:var(--font-mono);font-size:11px;letter-spacing:0.12em;text-transform:uppercase;padding:8px 18px;border-radius:100px;text-decoration:none;transition:all 0.2s}
+  .nav-pill:hover{background:var(--offwhite)}
+  .bib-hero{padding:120px 40px 48px;border-bottom:1px solid var(--border)}
+  .bib-eyebrow{font-family:var(--font-mono);font-size:11px;letter-spacing:0.3em;text-transform:uppercase;color:var(--yellow);margin-bottom:12px;display:flex;align-items:center;gap:12px}
+  .bib-eyebrow::before{content:'';display:block;width:24px;height:1px;background:var(--yellow)}
+  .bib-title{font-family:var(--font-display);font-size:clamp(48px,8vw,96px);line-height:0.9;margin-bottom:16px}
+  .bib-sub{font-size:15px;font-weight:300;color:var(--gray);max-width:480px;line-height:1.8}
+  .bib-section{padding:60px 40px;border-bottom:1px solid var(--border)}
+  .bib-section-label{font-family:var(--font-mono);font-size:11px;letter-spacing:0.3em;text-transform:uppercase;color:var(--yellow);margin-bottom:32px}
+  .recursos-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:1px;background:var(--border);border:1px solid var(--border)}
+  .recurso-card{background:var(--black);padding:32px;text-decoration:none;display:flex;flex-direction:column;gap:12px;transition:background 0.2s;cursor:pointer}
+  .recurso-card:hover{background:#0d0d0d}
+  .recurso-icon{font-size:28px}
+  .recurso-name{font-family:var(--font-display);font-size:24px;letter-spacing:0.03em;color:var(--offwhite)}
+  .recurso-desc{font-size:13px;font-weight:300;color:var(--gray);line-height:1.6;flex:1}
+  .recurso-tag{font-family:var(--font-mono);font-size:10px;letter-spacing:0.15em;text-transform:uppercase;color:var(--yellow);margin-top:auto}
+  .prompts-section{padding:60px 40px;background:var(--mid);border-bottom:1px solid var(--border)}
+  .prompts-title{font-family:var(--font-display);font-size:36px;letter-spacing:0.05em;color:var(--offwhite);margin-bottom:8px}
+  .prompts-sub{font-size:14px;font-weight:300;color:var(--gray);margin-bottom:32px;max-width:480px;line-height:1.7}
+  .prompt-list{display:flex;flex-direction:column;gap:1px;border:1px solid var(--border)}
+  .prompt-item{background:var(--black);padding:20px 24px;display:flex;align-items:center;justify-content:space-between;cursor:pointer;transition:background 0.2s;text-decoration:none}
+  .prompt-item:hover{background:#0d0d0d}
+  .prompt-item-left{display:flex;align-items:center;gap:16px}
+  .prompt-num{font-family:var(--font-mono);font-size:11px;letter-spacing:0.1em;color:var(--yellow);width:40px}
+  .prompt-name{font-size:14px;color:var(--offwhite)}
+  .prompt-tool{font-family:var(--font-mono);font-size:10px;letter-spacing:0.1em;text-transform:uppercase;color:var(--gray);margin-top:2px}
+  .prompt-arrow{color:var(--yellow);font-size:16px}
+  .soporte-section{padding:60px 40px}
+  .soporte-grid{display:grid;grid-template-columns:1fr 1fr;gap:1px;background:var(--border);border:1px solid var(--border)}
+  .soporte-card{background:var(--black);padding:40px;text-decoration:none;transition:background 0.2s}
+  .soporte-card:hover{background:#0d0d0d}
+  .soporte-icon{font-size:32px;margin-bottom:16px;display:block}
+  .soporte-name{font-family:var(--font-display);font-size:28px;letter-spacing:0.03em;color:var(--offwhite);margin-bottom:8px}
+  .soporte-desc{font-size:13px;font-weight:300;color:var(--gray);line-height:1.6;margin-bottom:20px}
+  .soporte-link{font-family:var(--font-mono);font-size:11px;letter-spacing:0.12em;text-transform:uppercase;color:var(--yellow)}
+  .level-footer{padding:40px;background:var(--black);border-top:1px solid var(--border);display:flex;justify-content:space-between;align-items:center}
+  .footer-brand{font-family:var(--font-display);font-size:16px;letter-spacing:0.2em;color:var(--offwhite)}
+  .footer-brand span{color:var(--yellow)}
+  .footer-nav{display:flex;gap:24px}
+  .footer-nav a{font-family:var(--font-mono);font-size:11px;letter-spacing:0.15em;text-transform:uppercase;color:var(--gray);text-decoration:none;transition:color 0.2s}
+  .footer-nav a:hover{color:var(--yellow)}
+  @media(max-width:768px){nav{padding:16px 20px}.nav-links{display:none}.bib-hero{padding:100px 20px 40px}.bib-section,.prompts-section,.soporte-section{padding:40px 20px}.recursos-grid{grid-template-columns:1fr}.soporte-grid{grid-template-columns:1fr}.level-footer{flex-direction:column;gap:20px;text-align:center}}
+</style>
+</head>
+<body>
+<nav>
+  <a href="index.html" class="nav-logo">ONE <span>HALF</span> ACADEMY</a>
+  <div class="nav-links">
+    <a href="index.html" class="nav-link">Inicio</a>
+    <a href="nivel-1.html" class="nav-link">Nivel 1</a>
+    <a href="nivel-2.html" class="nav-link">Nivel 2</a>
+    <a href="nivel-3.html" class="nav-link">Nivel 3</a>
+    <a href="leaderboard.html" class="nav-link">Ranking</a>
+  </div>
+  <a href="https://docs.google.com/forms/d/1eTtZkyqo9UnE8IkBKEOizsPORJ5VrbJhkpE9i00ukE4/viewform" target="_blank" class="nav-pill">Entregar misión →</a>
+</nav>
+<section class="bib-hero">
+  <div class="bib-eyebrow">Recursos del programa</div>
+  <h1 class="bib-title">BIBLIOTECA</h1>
+  <p class="bib-sub">Todo lo que necesitas para completar el programa, en un solo lugar.</p>
+</section>
+<section class="bib-section">
+  <div class="bib-section-label">Accesos directos</div>
+  <div class="recursos-grid">
+    <a href="https://docs.google.com/forms/d/1eTtZkyqo9UnE8IkBKEOizsPORJ5VrbJhkpE9i00ukE4/viewform" target="_blank" class="recurso-card">
+      <div class="recurso-icon">📤</div>
+      <div class="recurso-name">Entregar Misión</div>
+      <div class="recurso-desc">Registra tu entrega, sube tu evidencia y acumula los NPS correspondientes.</div>
+      <div class="recurso-tag">Google Forms →</div>
+    </a>
+    <a href="https://gemini.google.com/share/0fc71255d03c" target="_blank" class="recurso-card">
+      <div class="recurso-icon">🤖</div>
+      <div class="recurso-name">Asistente IA</div>
+      <div class="recurso-desc">El Gem de Gemini entrenado con el contenido del programa. Úsalo para dudas, prompts y motivación.</div>
+      <div class="recurso-tag">Gemini Gem →</div>
+    </a>
+    <a href="https://notebooklm.google.com/notebook/b187d554-e2d1-4c8a-9789-c63d4d2c172d" target="_blank" class="recurso-card">
+      <div class="recurso-icon">🧠</div>
+      <div class="recurso-name">Base de Conocimiento</div>
+      <div class="recurso-desc">El Notebook con toda la documentación del programa cargada y lista para consultarse.</div>
+      <div class="recurso-tag">NotebookLM →</div>
+    </a>
+    <a href="leaderboard.html" class="recurso-card">
+      <div class="recurso-icon">🏆</div>
+      <div class="recurso-name">Leaderboard</div>
+      <div class="recurso-desc">El ranking en tiempo real del equipo. Actualizado cada hora automáticamente.</div>
+      <div class="recurso-tag">Ver ranking →</div>
+    </a>
+    <a href="nivel-1.html" class="recurso-card">
+      <div class="recurso-icon">⚡</div>
+      <div class="recurso-name">Nivel 1</div>
+      <div class="recurso-desc">El Despertar del Colaborador. 12 misiones, 4 módulos, 800 NPS para graduarte.</div>
+      <div class="recurso-tag">Ir al Nivel 1 →</div>
+    </a>
+    <a href="https://drive.google.com/drive/folders/1PFt_YIDz5GOsBmPgD6saTQYbPCkOCgRP" target="_blank" class="recurso-card">
+      <div class="recurso-icon">📁</div>
+      <div class="recurso-name">Drive del Programa</div>
+      <div class="recurso-desc">Carpeta compartida con todos los recursos, plantillas y materiales del curso.</div>
+      <div class="recurso-tag">Abrir Drive →</div>
+    </a>
+  </div>
+</section>
+<section class="prompts-section">
+  <h2 class="prompts-title">RECETARIO DE PROMPTS</h2>
+  <p class="prompts-sub">Prompts probados y optimizados para cada herramienta y situación. Copia, pega y adapta.</p>
+  <div class="prompt-list">
+    <a href="https://docs.google.com/document/d/1W48IM8Sv0yx5IiJw5pmD6i2NCeXgpbn6jl_Evc1bHto/edit" target="_blank" class="prompt-item">
+      <div class="prompt-item-left"><div class="prompt-num">01</div><div><div class="prompt-name">Organizar tareas caóticas</div><div class="prompt-tool">Gemini · Tasks</div></div></div>
+      <div class="prompt-arrow">→</div>
+    </a>
+    <a href="https://docs.google.com/document/d/1c1P8RYDzxe-egVmByKxhTaVVpAKoFM9so5xrBqYY5oI/edit" target="_blank" class="prompt-item">
+      <div class="prompt-item-left"><div class="prompt-num">02</div><div><div class="prompt-name">Convertir email en minuta</div><div class="prompt-tool">Gemini · Docs</div></div></div>
+      <div class="prompt-arrow">→</div>
+    </a>
+    <a href="https://docs.google.com/document/d/1tG6EzbAyMGG9D1YVxQ_PxsI3_RLhwXNa5mLa8085VUoA/edit" target="_blank" class="prompt-item">
+      <div class="prompt-item-left"><div class="prompt-num">03</div><div><div class="prompt-name">Resumir hilo de Chat</div><div class="prompt-tool">Gemini · Chat</div></div></div>
+      <div class="prompt-arrow">→</div>
+    </a>
+    <a href="https://docs.google.com/document/d/1vbELo0C2yWno0TTsWmPZxkR6gHd1PPhxAq6Vh1pq0PM/edit" target="_blank" class="prompt-item">
+      <div class="prompt-item-left"><div class="prompt-num">04</div><div><div class="prompt-name">Responder email difícil</div><div class="prompt-tool">Gemini · Gmail</div></div></div>
+      <div class="prompt-arrow">→</div>
+    </a>
+    <a href="https://docs.google.com/document/d/1ObpWAi0ubzgVguFNIOge6pZosGL7VDoZpay30b_80Qc/edit" target="_blank" class="prompt-item">
+      <div class="prompt-item-left"><div class="prompt-num">05</div><div><div class="prompt-name">Framework STAR completo</div><div class="prompt-tool">Gemini · Prompt Engineering</div></div></div>
+      <div class="prompt-arrow">→</div>
+    </a>
+  </div>
+</section>
+<section class="soporte-section">
+  <div class="bib-section-label" style="margin-bottom:32px">Soporte y comunidad</div>
+  <div class="soporte-grid">
+    <a href="https://mail.google.com/mail/u/0/#chat/space/AAQA8NpvMR0" target="_blank" class="soporte-card">
+      <span class="soporte-icon">💬</span>
+      <div class="soporte-name">Space de Soporte</div>
+      <div class="soporte-desc">El Space oficial del programa en Google Chat. Resuelve dudas, celebra logros y conecta con el equipo.</div>
+      <div class="soporte-link">Abrir en Google Chat →</div>
+    </a>
+    <a href="https://gemini.google.com/share/0fc71255d03c" target="_blank" class="soporte-card">
+      <span class="soporte-icon">🤖</span>
+      <div class="soporte-name">Asistente IA 24/7</div>
+      <div class="soporte-desc">El Gem de Gemini está disponible en cualquier momento. Pregúntale sobre cualquier misión o herramienta del programa.</div>
+      <div class="soporte-link">Abrir Asistente →</div>
+    </a>
+  </div>
+</section>
+<footer class="level-footer">
+  <div class="footer-brand">ONE <span>HALF</span> ACADEMY</div>
+  <div class="footer-nav">
+    <a href="index.html">Inicio</a>
+    <a href="nivel-1.html">Nivel 1</a>
+    <a href="leaderboard.html">Ranking</a>
+  </div>
+</footer>
+</body>
+</html>
