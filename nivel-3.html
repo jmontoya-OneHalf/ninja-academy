@@ -1,0 +1,113 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Nivel 3 — ONE HALF ACADEMY</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=DM+Sans:ital,opsz,wght@0,9..40,300;0,9..40,400;0,9..40,500;1,9..40,300&family=DM+Mono:wght@300;400&display=swap" rel="stylesheet">
+<style>
+  :root{--black:#0A0A0A;--offwhite:#F5F2EC;--cream:#EDE9E0;--yellow:#FFD93D;--mid:#1A1A1A;--gray:#888888;--lightgray:#C8C8C8;--border:rgba(255,255,255,0.08);--font-display:'Bebas Neue',sans-serif;--font-body:'DM Sans',sans-serif;--font-mono:'DM Mono',monospace}
+  *,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+  html{scroll-behavior:smooth}
+  body{background:var(--black);color:var(--offwhite);font-family:var(--font-body);font-size:16px;line-height:1.6;overflow-x:hidden;-webkit-font-smoothing:antialiased}
+  ::-webkit-scrollbar{width:3px}::-webkit-scrollbar-track{background:var(--black)}::-webkit-scrollbar-thumb{background:var(--yellow);border-radius:2px}
+  nav{position:fixed;top:0;left:0;right:0;z-index:100;display:flex;justify-content:space-between;align-items:center;padding:20px 40px;background:rgba(10,10,10,0.92);backdrop-filter:blur(20px);border-bottom:1px solid var(--border)}
+  .nav-logo{font-family:var(--font-display);font-size:18px;letter-spacing:0.15em;color:var(--offwhite);text-decoration:none}
+  .nav-logo span{color:var(--yellow)}
+  .nav-links{display:flex;align-items:center;gap:32px}
+  .nav-link{font-family:var(--font-mono);font-size:11px;letter-spacing:0.15em;text-transform:uppercase;color:var(--gray);text-decoration:none;transition:color 0.2s}
+  .nav-link:hover{color:var(--offwhite)}.nav-link.active{color:var(--yellow)}
+  .nav-pill{background:var(--yellow);color:var(--black);font-family:var(--font-mono);font-size:11px;letter-spacing:0.12em;text-transform:uppercase;padding:8px 18px;border-radius:100px;text-decoration:none;transition:all 0.2s}
+  .nav-pill:hover{background:var(--offwhite)}
+  .level-hero{min-height:100vh;display:flex;flex-direction:column;justify-content:center;align-items:center;text-align:center;padding:120px 40px 60px;position:relative;overflow:hidden;background:radial-gradient(ellipse at center,rgba(255,217,61,0.04) 0%,transparent 70%)}
+  .level-hero::before{content:'03';position:absolute;font-family:var(--font-display);font-size:40vw;color:rgba(255,255,255,0.015);pointer-events:none;line-height:1}
+  .hero-content{position:relative;z-index:1}
+  .lock-icon{font-size:64px;margin-bottom:32px;display:block}
+  .level-eyebrow{font-family:var(--font-mono);font-size:11px;letter-spacing:0.3em;text-transform:uppercase;color:var(--yellow);margin-bottom:16px}
+  .level-title{font-family:var(--font-display);font-size:clamp(56px,10vw,120px);line-height:0.9;margin-bottom:24px}
+  .level-title .accent{color:var(--yellow)}
+  .level-title .stroke{-webkit-text-stroke:1px var(--offwhite);color:transparent}
+  .level-desc{font-size:16px;font-weight:300;color:var(--gray);max-width:480px;margin:0 auto 40px;line-height:1.8}
+  .unlock-box{border:1px solid rgba(255,217,61,0.2);padding:24px 40px;margin-bottom:40px;display:inline-block}
+  .unlock-label{font-family:var(--font-mono);font-size:10px;letter-spacing:0.25em;text-transform:uppercase;color:var(--gray);margin-bottom:8px}
+  .unlock-val{font-family:var(--font-display);font-size:36px;color:var(--yellow)}
+  .unlock-sub{font-size:13px;color:var(--gray);font-weight:300;margin-top:4px}
+  .btn-back{display:inline-flex;align-items:center;gap:12px;background:var(--yellow);color:var(--black);font-family:var(--font-mono);font-size:12px;letter-spacing:0.15em;text-transform:uppercase;padding:16px 28px;text-decoration:none;transition:all 0.2s}
+  .btn-back:hover{background:var(--offwhite)}
+  .sensei-section{padding:80px 40px;background:var(--mid);border-top:1px solid var(--border);text-align:center}
+  .sensei-title{font-family:var(--font-display);font-size:48px;letter-spacing:0.05em;color:var(--offwhite);margin-bottom:16px}
+  .sensei-desc{font-size:14px;font-weight:300;color:var(--gray);max-width:500px;margin:0 auto 40px;line-height:1.8;font-style:italic}
+  .sensei-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:1px;background:var(--border);border:1px solid var(--border);max-width:800px;margin:0 auto}
+  .sensei-item{background:var(--black);padding:32px 24px;text-align:left}
+  .sensei-icon{font-size:28px;margin-bottom:16px;display:block}
+  .sensei-name{font-family:var(--font-display);font-size:20px;letter-spacing:0.05em;color:var(--offwhite);margin-bottom:8px}
+  .sensei-sub{font-size:12px;font-weight:300;color:var(--gray);line-height:1.6}
+  .level-footer{padding:40px;background:var(--black);border-top:1px solid var(--border);display:flex;justify-content:space-between;align-items:center}
+  .footer-brand{font-family:var(--font-display);font-size:16px;letter-spacing:0.2em;color:var(--offwhite)}
+  .footer-brand span{color:var(--yellow)}
+  .footer-nav{display:flex;gap:24px}
+  .footer-nav a{font-family:var(--font-mono);font-size:11px;letter-spacing:0.15em;text-transform:uppercase;color:var(--gray);text-decoration:none;transition:color 0.2s}
+  .footer-nav a:hover{color:var(--yellow)}
+  @media(max-width:768px){nav{padding:16px 20px}.nav-links{display:none}.level-hero{padding:100px 20px 48px}.sensei-grid{grid-template-columns:1fr}.level-footer{flex-direction:column;gap:20px;text-align:center}}
+</style>
+</head>
+<body>
+<nav>
+  <a href="index.html" class="nav-logo">ONE <span>HALF</span> ACADEMY</a>
+  <div class="nav-links">
+    <a href="index.html" class="nav-link">Inicio</a>
+    <a href="nivel-1.html" class="nav-link">Nivel 1</a>
+    <a href="nivel-2.html" class="nav-link">Nivel 2</a>
+    <a href="nivel-3.html" class="nav-link active">Nivel 3</a>
+    <a href="leaderboard.html" class="nav-link">Ranking</a>
+  </div>
+  <a href="nivel-1.html" class="nav-pill">← Empezar desde Nivel 1</a>
+</nav>
+<section class="level-hero">
+  <div class="hero-content">
+    <span class="lock-icon">🥷</span>
+    <div class="level-eyebrow">Nivel 3 de 3 — El nivel final</div>
+    <h1 class="level-title">EL <span class="accent">MAESTRO</span><br>DEL <span class="stroke">CONOCIMIENTO</span></h1>
+    <p class="level-desc">Ya no usas herramientas. Diseñas sistemas que las hacen trabajar solas. Este es el nivel del Sensei. Pero primero hay que llegar hasta acá.</p>
+    <div class="unlock-box">
+      <div class="unlock-label">Se desbloquea al alcanzar</div>
+      <div class="unlock-val">1500 NPS</div>
+      <div class="unlock-sub">en el Nivel 2 — El Forjador</div>
+    </div>
+    <br>
+    <a href="nivel-1.html" class="btn-back">⚡ Comenzar desde el Nivel 1 →</a>
+  </div>
+</section>
+<section class="sensei-section">
+  <h2 class="sensei-title">LO QUE TE ESPERA</h2>
+  <p class="sensei-desc">"El talento te lleva a la reunión. La productividad inteligente te hace llegar preparado, con el resumen ya hecho y el café caliente."</p>
+  <div class="sensei-grid">
+    <div class="sensei-item">
+      <span class="sensei-icon">⚙️</span>
+      <div class="sensei-name">Liderazgo de Sistemas</div>
+      <div class="sensei-sub">OKRs conectados a Tasks. Automatización total. Dashboard ejecutivo de productividad del equipo.</div>
+    </div>
+    <div class="sensei-item">
+      <span class="sensei-icon">🤖</span>
+      <div class="sensei-name">IA Aplicada</div>
+      <div class="sensei-sub">Meta-prompts que generan prompts. Pipelines de contenido. Gemini como capa de inteligencia.</div>
+    </div>
+    <div class="sensei-item">
+      <span class="sensei-icon">🧠</span>
+      <div class="sensei-name">Inteligencia Org.</div>
+      <div class="sensei-sub">Memoria institucional en NotebookLM. Onboarding acelerado. Oráculo estratégico del equipo.</div>
+    </div>
+  </div>
+</section>
+<footer class="level-footer">
+  <div class="footer-brand">ONE <span>HALF</span> ACADEMY</div>
+  <div class="footer-nav">
+    <a href="index.html">Inicio</a>
+    <a href="nivel-2.html">← Nivel 2</a>
+    <a href="leaderboard.html">Ranking</a>
+    <a href="biblioteca.html">Biblioteca</a>
+  </div>
+</footer>
+</body>
+</html>
