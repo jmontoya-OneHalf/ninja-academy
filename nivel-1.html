@@ -1,0 +1,730 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Nivel 1 — ONE HALF ACADEMY</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=DM+Sans:ital,opsz,wght@0,9..40,300;0,9..40,400;0,9..40,500;1,9..40,300&family=DM+Mono:wght@300;400&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --black:    #0A0A0A;
+    --offwhite: #F5F2EC;
+    --cream:    #EDE9E0;
+    --yellow:   #FFD93D;
+    --mid:      #1A1A1A;
+    --gray:     #888888;
+    --lightgray:#C8C8C8;
+    --border:   rgba(255,255,255,0.08);
+    --font-display: 'Bebas Neue', sans-serif;
+    --font-body:    'DM Sans', sans-serif;
+    --font-mono:    'DM Mono', monospace;
+    --ease-out: cubic-bezier(0.16, 1, 0.3, 1);
+  }
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+  html { scroll-behavior: smooth; }
+  body {
+    background: var(--black);
+    color: var(--offwhite);
+    font-family: var(--font-body);
+    font-size: 16px;
+    line-height: 1.6;
+    overflow-x: hidden;
+    -webkit-font-smoothing: antialiased;
+  }
+  ::-webkit-scrollbar { width: 3px; }
+  ::-webkit-scrollbar-track { background: var(--black); }
+  ::-webkit-scrollbar-thumb { background: var(--yellow); border-radius: 2px; }
+  /* NAV */
+  nav {
+    position: fixed;
+    top: 0; left: 0; right: 0;
+    z-index: 100;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 20px 40px;
+    background: rgba(10,10,10,0.92);
+    backdrop-filter: blur(20px);
+    border-bottom: 1px solid var(--border);
+  }
+  .nav-logo {
+    font-family: var(--font-display);
+    font-size: 18px;
+    letter-spacing: 0.15em;
+    color: var(--offwhite);
+    text-decoration: none;
+  }
+  .nav-logo span { color: var(--yellow); }
+  .nav-links {
+    display: flex;
+    align-items: center;
+    gap: 32px;
+  }
+  .nav-link {
+    font-family: var(--font-mono);
+    font-size: 11px;
+    letter-spacing: 0.15em;
+    text-transform: uppercase;
+    color: var(--gray);
+    text-decoration: none;
+    transition: color 0.2s;
+  }
+  .nav-link:hover { color: var(--offwhite); }
+  .nav-link.active { color: var(--yellow); }
+  .nav-pill {
+    background: var(--yellow);
+    color: var(--black);
+    font-family: var(--font-mono);
+    font-size: 11px;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    padding: 8px 18px;
+    border-radius: 100px;
+    text-decoration: none;
+    transition: all 0.2s;
+  }
+  .nav-pill:hover { background: var(--offwhite); }
+  /* HERO NIVEL */
+  .level-hero {
+    min-height: 40vh;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-end;
+    padding: 120px 40px 48px;
+    border-bottom: 1px solid var(--border);
+    position: relative;
+    overflow: hidden;
+  }
+  .level-hero::after {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background: repeating-linear-gradient(
+      -55deg,
+      transparent,
+      transparent 80px,
+      rgba(255,255,255,0.012) 80px,
+      rgba(255,255,255,0.012) 81px
+    );
+    pointer-events: none;
+  }
+  .level-eyebrow {
+    font-family: var(--font-mono);
+    font-size: 11px;
+    letter-spacing: 0.3em;
+    text-transform: uppercase;
+    color: var(--yellow);
+    margin-bottom: 16px;
+    display: flex;
+    align-items: center;
+    gap: 12px;
+  }
+  .level-eyebrow::before {
+    content: '';
+    display: block;
+    width: 24px;
+    height: 1px;
+    background: var(--yellow);
+  }
+  .level-title {
+    font-family: var(--font-display);
+    font-size: clamp(56px, 10vw, 120px);
+    line-height: 0.9;
+    letter-spacing: 0.01em;
+    margin-bottom: 24px;
+  }
+  .level-title .accent { color: var(--yellow); }
+  .level-meta {
+    display: flex;
+    align-items: center;
+    gap: 32px;
+    flex-wrap: wrap;
+  }
+  .level-meta-item {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    font-family: var(--font-mono);
+    font-size: 11px;
+    letter-spacing: 0.15em;
+    text-transform: uppercase;
+    color: var(--gray);
+  }
+  .level-meta-dot {
+    width: 6px;
+    height: 6px;
+    border-radius: 50%;
+    background: var(--yellow);
+  }
+  .nps-required {
+    font-family: var(--font-display);
+    font-size: 18px;
+    color: var(--yellow);
+  }
+  /* PROGRESS BAR */
+  .progress-section {
+    padding: 24px 40px;
+    background: var(--mid);
+    border-bottom: 1px solid var(--border);
+    display: flex;
+    align-items: center;
+    gap: 24px;
+  }
+  .progress-label {
+    font-family: var(--font-mono);
+    font-size: 10px;
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    color: var(--gray);
+    white-space: nowrap;
+  }
+  .progress-bar-wrap {
+    flex: 1;
+    height: 3px;
+    background: rgba(255,255,255,0.06);
+    border-radius: 2px;
+    overflow: hidden;
+  }
+  .progress-bar {
+    height: 100%;
+    background: var(--yellow);
+    border-radius: 2px;
+    width: 0%;
+    transition: width 1.2s cubic-bezier(0.16,1,0.3,1);
+  }
+  .progress-val {
+    font-family: var(--font-display);
+    font-size: 20px;
+    color: var(--yellow);
+    white-space: nowrap;
+  }
+  /* MÓDULOS */
+  .modules-container {
+    padding: 0;
+  }
+  .module-section {
+    border-bottom: 1px solid var(--border);
+  }
+  .module-header {
+    padding: 40px 40px 32px;
+    display: flex;
+    align-items: flex-end;
+    justify-content: space-between;
+    cursor: pointer;
+    transition: background 0.2s;
+    user-select: none;
+  }
+  .module-header:hover { background: rgba(255,255,255,0.02); }
+  .module-header-left { }
+  .module-eyebrow {
+    font-family: var(--font-mono);
+    font-size: 10px;
+    letter-spacing: 0.25em;
+    text-transform: uppercase;
+    color: var(--yellow);
+    margin-bottom: 8px;
+  }
+  .module-title {
+    font-family: var(--font-display);
+    font-size: 42px;
+    letter-spacing: 0.03em;
+    line-height: 1;
+  }
+  .module-header-right {
+    display: flex;
+    align-items: center;
+    gap: 20px;
+  }
+  .module-nps {
+    font-family: var(--font-display);
+    font-size: 32px;
+    color: var(--yellow);
+  }
+  .module-nps-label {
+    font-family: var(--font-mono);
+    font-size: 9px;
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    color: var(--gray);
+  }
+  .module-toggle {
+    font-size: 20px;
+    color: var(--yellow);
+    transition: transform 0.3s;
+  }
+  .module-toggle.open { transform: rotate(45deg); }
+  /* MISIONES */
+  .missions-grid {
+    display: none;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 1px;
+    background: var(--border);
+    border-top: 1px solid var(--border);
+  }
+  .missions-grid.open { display: grid; }
+  .mission-card {
+    background: var(--black);
+    padding: 32px;
+    display: flex;
+    flex-direction: column;
+    gap: 0;
+    transition: background 0.2s;
+  }
+  .mission-card:hover { background: #0d0d0d; }
+  .mission-id {
+    font-family: var(--font-mono);
+    font-size: 10px;
+    letter-spacing: 0.25em;
+    text-transform: uppercase;
+    color: var(--yellow);
+    margin-bottom: 12px;
+    opacity: 0.7;
+  }
+  .mission-name {
+    font-family: var(--font-display);
+    font-size: 24px;
+    letter-spacing: 0.03em;
+    color: var(--offwhite);
+    margin-bottom: 10px;
+    line-height: 1.1;
+  }
+  .mission-desc {
+    font-size: 13px;
+    font-weight: 300;
+    color: var(--gray);
+    line-height: 1.7;
+    margin-bottom: 20px;
+    flex: 1;
+  }
+  .mission-meta {
+    display: flex;
+    gap: 12px;
+    margin-bottom: 20px;
+    flex-wrap: wrap;
+  }
+  .mission-chip {
+    font-family: var(--font-mono);
+    font-size: 10px;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    padding: 4px 10px;
+    border: 1px solid rgba(255,255,255,0.08);
+    color: var(--lightgray);
+  }
+  .mission-chip.nps { border-color: rgba(255,217,61,0.3); color: var(--yellow); }
+  .mission-actions {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+    padding-top: 20px;
+    border-top: 1px solid var(--border);
+  }
+  .btn-mission-primary {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    background: var(--yellow);
+    color: var(--black);
+    font-family: var(--font-mono);
+    font-size: 11px;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    padding: 12px 16px;
+    text-decoration: none;
+    transition: all 0.2s;
+    border: none;
+    cursor: pointer;
+    width: 100%;
+  }
+  .btn-mission-primary:hover { background: var(--offwhite); }
+  .btn-mission-secondary {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    background: transparent;
+    color: var(--offwhite);
+    font-family: var(--font-mono);
+    font-size: 11px;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    padding: 12px 16px;
+    text-decoration: none;
+    transition: all 0.2s;
+    border: 1px solid var(--border);
+    cursor: pointer;
+    width: 100%;
+  }
+  .btn-mission-secondary:hover { border-color: rgba(255,255,255,0.2); color: var(--yellow); }
+  /* RECURSOS SECTION */
+  .recursos-section {
+    padding: 60px 40px;
+    background: var(--mid);
+    border-bottom: 1px solid var(--border);
+  }
+  .recursos-title {
+    font-family: var(--font-mono);
+    font-size: 11px;
+    letter-spacing: 0.3em;
+    text-transform: uppercase;
+    color: var(--yellow);
+    margin-bottom: 32px;
+  }
+  .recursos-grid {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 1px;
+    background: var(--border);
+    border: 1px solid var(--border);
+  }
+  .recurso-card {
+    background: var(--black);
+    padding: 24px;
+    text-decoration: none;
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    transition: background 0.2s;
+  }
+  .recurso-card:hover { background: #111; }
+  .recurso-icon { font-size: 20px; }
+  .recurso-name {
+    font-family: var(--font-display);
+    font-size: 18px;
+    letter-spacing: 0.05em;
+    color: var(--offwhite);
+  }
+  .recurso-desc {
+    font-size: 12px;
+    font-weight: 300;
+    color: var(--gray);
+    line-height: 1.5;
+  }
+  .recurso-arrow {
+    font-size: 14px;
+    color: var(--yellow);
+    margin-top: auto;
+  }
+  /* FOOTER NAV */
+  .level-footer {
+    padding: 40px;
+    background: var(--black);
+    border-top: 1px solid var(--border);
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+  }
+  .footer-brand {
+    font-family: var(--font-display);
+    font-size: 16px;
+    letter-spacing: 0.2em;
+    color: var(--offwhite);
+  }
+  .footer-brand span { color: var(--yellow); }
+  .footer-nav {
+    display: flex;
+    gap: 24px;
+  }
+  .footer-nav a {
+    font-family: var(--font-mono);
+    font-size: 11px;
+    letter-spacing: 0.15em;
+    text-transform: uppercase;
+    color: var(--gray);
+    text-decoration: none;
+    transition: color 0.2s;
+  }
+  .footer-nav a:hover { color: var(--yellow); }
+  /* REVEAL */
+  .reveal {
+    opacity: 0;
+    transform: translateY(24px);
+    transition: opacity 0.7s cubic-bezier(0.16,1,0.3,1), transform 0.7s cubic-bezier(0.16,1,0.3,1);
+  }
+  .reveal.visible { opacity: 1; transform: translateY(0); }
+  /* RESPONSIVE */
+  @media (max-width: 768px) {
+    nav { padding: 16px 20px; }
+    .nav-links { display: none; }
+    .level-hero { padding: 100px 20px 40px; }
+    .module-header { padding: 28px 20px 24px; }
+    .missions-grid { grid-template-columns: 1fr; }
+    .recursos-grid { grid-template-columns: 1fr 1fr; }
+    .progress-section { padding: 16px 20px; }
+    .level-footer { flex-direction: column; gap: 20px; text-align: center; }
+  }
+</style>
+</head>
+<body>
+<!-- NAV -->
+<nav>
+  <a href="index.html" class="nav-logo">ONE <span>HALF</span> ACADEMY</a>
+  <div class="nav-links">
+    <a href="index.html" class="nav-link">Inicio</a>
+    <a href="nivel-1.html" class="nav-link active">Nivel 1</a>
+    <a href="nivel-2.html" class="nav-link">Nivel 2</a>
+    <a href="nivel-3.html" class="nav-link">Nivel 3</a>
+    <a href="leaderboard.html" class="nav-link">Ranking</a>
+  </div>
+  <a href="https://docs.google.com/forms/d/1eTtZkyqo9UnE8IkBKEOizsPORJ5VrbJhkpE9i00ukE4/viewform" target="_blank" class="nav-pill">Entregar misión →</a>
+</nav>
+<!-- HERO -->
+<section class="level-hero">
+  <div class="level-eyebrow">Nivel 1 de 3</div>
+  <h1 class="level-title">EL <span class="accent">DESPERTAR</span><br>DEL COLABORADOR</h1>
+  <div class="level-meta">
+    <div class="level-meta-item"><span class="level-meta-dot"></span>4 módulos</div>
+    <div class="level-meta-item"><span class="level-meta-dot"></span>12 misiones</div>
+    <div class="level-meta-item"><span class="level-meta-dot"></span><span class="nps-required">800</span>&nbsp;NPS para graduarte</div>
+    <div class="level-meta-item"><span class="level-meta-dot"></span>Badge: 🥋 Padawan Digital</div>
+  </div>
+</section>
+<!-- PROGRESS -->
+<div class="progress-section">
+  <span class="progress-label">Tu progreso</span>
+  <div class="progress-bar-wrap"><div class="progress-bar" id="progressBar"></div></div>
+  <span class="progress-val">0 / 800 NPS</span>
+</div>
+<!-- MÓDULOS -->
+<div class="modules-container">
+  <!-- MÓDULO 1 — TASKS -->
+  <div class="module-section reveal">
+    <div class="module-header" onclick="toggleModule('tasks')">
+      <div class="module-header-left">
+        <div class="module-eyebrow">Módulo 01 · Google Tasks</div>
+        <h2 class="module-title">ORGANIZACIÓN<br>PERSONAL</h2>
+      </div>
+      <div class="module-header-right">
+        <div><div class="module-nps">350</div><div class="module-nps-label">NPS disponibles</div></div>
+        <div class="module-toggle" id="toggle-tasks">+</div>
+      </div>
+    </div>
+    <div class="missions-grid" id="module-tasks">
+      <div class="mission-card">
+        <div class="mission-id">M1.1.1</div>
+        <div class="mission-name">Limpieza de Campo</div>
+        <div class="mission-desc">Captura todas tus tareas pendientes en Google Tasks. Mínimo 10 tareas en 3 listas. El caos mental termina hoy.</div>
+        <div class="mission-meta"><span class="mission-chip nps">+100 NPS</span><span class="mission-chip">3 días</span><span class="mission-chip">Tasks</span></div>
+        <div class="mission-actions">
+          <a href="https://docs.google.com/document/d/1W48IM8Sv0yx5IiJw5pmD6i2NCeXgpbn6jl_Evc1bHto/edit" target="_blank" class="btn-mission-primary"><span>📖 Ver instrucciones</span><span>→</span></a>
+          <a href="https://docs.google.com/forms/d/1eTtZkyqo9UnE8IkBKEOizsPORJ5VrbJhkpE9i00ukE4/viewform" target="_blank" class="btn-mission-secondary"><span>📤 Entregar misión</span><span>→</span></a>
+        </div>
+      </div>
+      <div class="mission-card">
+        <div class="mission-id">M1.1.2</div>
+        <div class="mission-name">Arte de la Delegación</div>
+        <div class="mission-desc">Asigna 3 tareas a compañeros desde Tasks. Delegar es multiplicar, no perder control.</div>
+        <div class="mission-meta"><span class="mission-chip nps">+100 NPS</span><span class="mission-chip">5 días</span><span class="mission-chip">Tasks</span></div>
+        <div class="mission-actions">
+          <a href="https://docs.google.com/document/d/13HH8A1PA9CC1Jy50mr1OeMRmGq2bhexWydRRjH0SAMw/edit" target="_blank" class="btn-mission-primary"><span>📖 Ver instrucciones</span><span>→</span></a>
+          <a href="https://docs.google.com/forms/d/1eTtZkyqo9UnE8IkBKEOizsPORJ5VrbJhkpE9i00ukE4/viewform" target="_blank" class="btn-mission-secondary"><span>📤 Entregar misión</span><span>→</span></a>
+        </div>
+      </div>
+      <div class="mission-card">
+        <div class="mission-id">M1.1.3</div>
+        <div class="mission-name">El Ritual Matutino</div>
+        <div class="mission-desc">5 días consecutivos con Tasks activo cada mañana. No es una tarea, es un hábito.</div>
+        <div class="mission-meta"><span class="mission-chip nps">+150 NPS</span><span class="mission-chip">7 días</span><span class="mission-chip">Tasks</span></div>
+        <div class="mission-actions">
+          <a href="https://docs.google.com/document/d/1RdP8SRXfFkrbs9MZtenUe1SIgWT27bBK4Otf8nuGkhQ/edit" target="_blank" class="btn-mission-primary"><span>📖 Ver instrucciones</span><span>→</span></a>
+          <a href="https://docs.google.com/forms/d/1eTtZkyqo9UnE8IkBKEOizsPORJ5VrbJhkpE9i00ukE4/viewform" target="_blank" class="btn-mission-secondary"><span>📤 Entregar misión</span><span>→</span></a>
+        </div>
+      </div>
+    </div>
+  </div>
+  <!-- MÓDULO 2 — CHAT -->
+  <div class="module-section reveal">
+    <div class="module-header" onclick="toggleModule('chat')">
+      <div class="module-header-left">
+        <div class="module-eyebrow">Módulo 02 · Google Chat</div>
+        <h2 class="module-title">COMUNICACIÓN<br>INTELIGENTE</h2>
+      </div>
+      <div class="module-header-right">
+        <div><div class="module-nps">275</div><div class="module-nps-label">NPS disponibles</div></div>
+        <div class="module-toggle" id="toggle-chat">+</div>
+      </div>
+    </div>
+    <div class="missions-grid" id="module-chat">
+      <div class="mission-card">
+        <div class="mission-id">M1.2.1</div>
+        <div class="mission-name">Arquitecto de Espacios</div>
+        <div class="mission-desc">Crea el Space oficial de tu área con estructura y propósito. Un chat con intención es un centro de operaciones.</div>
+        <div class="mission-meta"><span class="mission-chip nps">+100 NPS</span><span class="mission-chip">3 días</span><span class="mission-chip">Chat</span></div>
+        <div class="mission-actions">
+          <a href="https://docs.google.com/document/d/1jZ530RpTgwOJCeTGMGKHA_0XaPkFnKd2RQSssmNAHbc/edit" target="_blank" class="btn-mission-primary"><span>📖 Ver instrucciones</span><span>→</span></a>
+          <a href="https://docs.google.com/forms/d/1eTtZkyqo9UnE8IkBKEOizsPORJ5VrbJhkpE9i00ukE4/viewform" target="_blank" class="btn-mission-secondary"><span>📤 Entregar misión</span><span>→</span></a>
+        </div>
+      </div>
+      <div class="mission-card">
+        <div class="mission-id">M1.2.2</div>
+        <div class="mission-name">El Hilo Dorado</div>
+        <div class="mission-desc">5 días respondiendo solo en hilos. Cero mensajes sueltos en el canal principal. Sin excepción.</div>
+        <div class="mission-meta"><span class="mission-chip nps">+100 NPS</span><span class="mission-chip">5 días</span><span class="mission-chip">Chat</span></div>
+        <div class="mission-actions">
+          <a href="https://docs.google.com/document/d/1UjV14MrXP0N8Ah7oB51W0Cmzxb26tqaaJpUx00EDg3s/edit" target="_blank" class="btn-mission-primary"><span>📖 Ver instrucciones</span><span>→</span></a>
+          <a href="https://docs.google.com/forms/d/1eTtZkyqo9UnE8IkBKEOizsPORJ5VrbJhkpE9i00ukE4/viewform" target="_blank" class="btn-mission-secondary"><span>📤 Entregar misión</span><span>→</span></a>
+        </div>
+      </div>
+      <div class="mission-card">
+        <div class="mission-id">M1.2.3</div>
+        <div class="mission-name">Mención Quirúrgica</div>
+        <div class="mission-desc">Reemplaza 3 emails innecesarios con @menciones estratégicas. Interrumpe solo cuando vale la pena.</div>
+        <div class="mission-meta"><span class="mission-chip nps">+75 NPS</span><span class="mission-chip">4 días</span><span class="mission-chip">Chat</span></div>
+        <div class="mission-actions">
+          <a href="https://docs.google.com/document/d/1tG6EzbAyMGG9D1YVxQ_PxsI3_RLhwXNa5mLa8085VUoA/edit" target="_blank" class="btn-mission-primary"><span>📖 Ver instrucciones</span><span>→</span></a>
+          <a href="https://docs.google.com/forms/d/1eTtZkyqo9UnE8IkBKEOizsPORJ5VrbJhkpE9i00ukE4/viewform" target="_blank" class="btn-mission-secondary"><span>📤 Entregar misión</span><span>→</span></a>
+        </div>
+      </div>
+    </div>
+  </div>
+  <!-- MÓDULO 3 — GEMINI -->
+  <div class="module-section reveal">
+    <div class="module-header" onclick="toggleModule('gemini')">
+      <div class="module-header-left">
+        <div class="module-eyebrow">Módulo 03 · Gemini</div>
+        <h2 class="module-title">PROMPT<br>ENGINEERING</h2>
+      </div>
+      <div class="module-header-right">
+        <div><div class="module-nps">350</div><div class="module-nps-label">NPS disponibles</div></div>
+        <div class="module-toggle" id="toggle-gemini">+</div>
+      </div>
+    </div>
+    <div class="missions-grid" id="module-gemini">
+      <div class="mission-card">
+        <div class="mission-id">M1.3.1</div>
+        <div class="mission-name">El Traductor Corporativo</div>
+        <div class="mission-desc">3 emails reales reescritos con Gemini. La IA amplifica lo que ya piensas.</div>
+        <div class="mission-meta"><span class="mission-chip nps">+100 NPS</span><span class="mission-chip">4 días</span><span class="mission-chip">Gemini</span></div>
+        <div class="mission-actions">
+          <a href="https://docs.google.com/document/d/1vbELo0C2yWno0TTsWmPZxkR6gHd1PPhxAq6Vh1pq0PM/edit" target="_blank" class="btn-mission-primary"><span>📖 Ver instrucciones</span><span>→</span></a>
+          <a href="https://docs.google.com/forms/d/1eTtZkyqo9UnE8IkBKEOizsPORJ5VrbJhkpE9i00ukE4/viewform" target="_blank" class="btn-mission-secondary"><span>📤 Entregar misión</span><span>→</span></a>
+        </div>
+      </div>
+      <div class="mission-card">
+        <div class="mission-id">M1.3.2</div>
+        <div class="mission-name">Minutas en Segundos</div>
+        <div class="mission-desc">Notas crudas de reunión a minuta profesional en menos de 2 minutos. Compartida antes de salir de la sala.</div>
+        <div class="mission-meta"><span class="mission-chip nps">+100 NPS</span><span class="mission-chip">3 días</span><span class="mission-chip">Gemini</span></div>
+        <div class="mission-actions">
+          <a href="https://docs.google.com/document/d/1c1P8RYDzxe-egVmByKxhTaVVpAKoFM9so5xrBqYY5oI/edit" target="_blank" class="btn-mission-primary"><span>📖 Ver instrucciones</span><span>→</span></a>
+          <a href="https://docs.google.com/forms/d/1eTtZkyqo9UnE8IkBKEOizsPORJ5VrbJhkpE9i00ukE4/viewform" target="_blank" class="btn-mission-secondary"><span>📤 Entregar misión</span><span>→</span></a>
+        </div>
+      </div>
+      <div class="mission-card">
+        <div class="mission-id">M1.3.3</div>
+        <div class="mission-name">Primer Prompt Perfecto</div>
+        <div class="mission-desc">Aprende el framework STAR y crea tu primer prompt profesional. Un prompt vago da una respuesta vaga.</div>
+        <div class="mission-meta"><span class="mission-chip nps">+150 NPS</span><span class="mission-chip">6 días</span><span class="mission-chip">Gemini</span></div>
+        <div class="mission-actions">
+          <a href="https://docs.google.com/document/d/1ObpWAi0ubzgVguFNIOge6pZosGL7VDoZpay30b_80Qc/edit" target="_blank" class="btn-mission-primary"><span>📖 Ver instrucciones</span><span>→</span></a>
+          <a href="https://docs.google.com/forms/d/1eTtZkyqo9UnE8IkBKEOizsPORJ5VrbJhkpE9i00ukE4/viewform" target="_blank" class="btn-mission-secondary"><span>📤 Entregar misión</span><span>→</span></a>
+        </div>
+      </div>
+    </div>
+  </div>
+  <!-- MÓDULO 4 — NOTEBOOKLM -->
+  <div class="module-section reveal">
+    <div class="module-header" onclick="toggleModule('nlm')">
+      <div class="module-header-left">
+        <div class="module-eyebrow">Módulo 04 · NotebookLM</div>
+        <h2 class="module-title">GESTIÓN DEL<br>CONOCIMIENTO</h2>
+      </div>
+      <div class="module-header-right">
+        <div><div class="module-nps">350</div><div class="module-nps-label">NPS disponibles</div></div>
+        <div class="module-toggle" id="toggle-nlm">+</div>
+      </div>
+    </div>
+    <div class="missions-grid" id="module-nlm">
+      <div class="mission-card">
+        <div class="mission-id">M1.4.1</div>
+        <div class="mission-name">Construye tu Biblioteca</div>
+        <div class="mission-desc">Crea tu primer Notebook con los 5 documentos más importantes de tu trabajo. A partir de hoy tienes un analista que los leyó todos.</div>
+        <div class="mission-meta"><span class="mission-chip nps">+100 NPS</span><span class="mission-chip">4 días</span><span class="mission-chip">NotebookLM</span></div>
+        <div class="mission-actions">
+          <a href="https://docs.google.com/document/d/19L1wr-KCntru1Aqg_vcTZEWR3T46n_TDS_6rZqtS1Ks/edit" target="_blank" class="btn-mission-primary"><span>📖 Ver instrucciones</span><span>→</span></a>
+          <a href="https://docs.google.com/forms/d/1eTtZkyqo9UnE8IkBKEOizsPORJ5VrbJhkpE9i00ukE4/viewform" target="_blank" class="btn-mission-secondary"><span>📤 Entregar misión</span><span>→</span></a>
+        </div>
+      </div>
+      <div class="mission-card">
+        <div class="mission-id">M1.4.2</div>
+        <div class="mission-name">El Interrogatorio</div>
+        <div class="mission-desc">10 preguntas de 4 tipos distintos a tus documentos. Aprende a extraer exactamente lo que necesitas.</div>
+        <div class="mission-meta"><span class="mission-chip nps">+100 NPS</span><span class="mission-chip">5 días</span><span class="mission-chip">NotebookLM</span></div>
+        <div class="mission-actions">
+          <a href="https://docs.google.com/document/d/1uhIT94kzYSpPs8e91Hm8OieK4iqY91Uk7ki0CrsG2p8/edit" target="_blank" class="btn-mission-primary"><span>📖 Ver instrucciones</span><span>→</span></a>
+          <a href="https://docs.google.com/forms/d/1eTtZkyqo9UnE8IkBKEOizsPORJ5VrbJhkpE9i00ukE4/viewform" target="_blank" class="btn-mission-secondary"><span>📤 Entregar misión</span><span>→</span></a>
+        </div>
+      </div>
+      <div class="mission-card">
+        <div class="mission-id">M1.4.3</div>
+        <div class="mission-name">Audio Overview</div>
+        <div class="mission-desc">Genera tu primer podcast de 10 minutos con NotebookLM y extrae el insight más valioso para el equipo.</div>
+        <div class="mission-meta"><span class="mission-chip nps">+150 NPS</span><span class="mission-chip">7 días</span><span class="mission-chip">NotebookLM</span></div>
+        <div class="mission-actions">
+          <a href="https://docs.google.com/document/d/1PTuVvW0gF1H_M9GLDYEIzd1GxfzEXDb4yB5CUSgdcVU/edit" target="_blank" class="btn-mission-primary"><span>📖 Ver instrucciones</span><span>→</span></a>
+          <a href="https://docs.google.com/forms/d/1eTtZkyqo9UnE8IkBKEOizsPORJ5VrbJhkpE9i00ukE4/viewform" target="_blank" class="btn-mission-secondary"><span>📤 Entregar misión</span><span>→</span></a>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+<!-- RECURSOS -->
+<section class="recursos-section reveal">
+  <div class="recursos-title">Recursos del Nivel 1</div>
+  <div class="recursos-grid">
+    <a href="https://docs.google.com/forms/d/1eTtZkyqo9UnE8IkBKEOizsPORJ5VrbJhkpE9i00ukE4/viewform" target="_blank" class="recurso-card">
+      <div class="recurso-icon">📤</div>
+      <div class="recurso-name">Entregar misión</div>
+      <div class="recurso-desc">Registra tu entrega y acumula NPS</div>
+      <div class="recurso-arrow">→</div>
+    </a>
+    <a href="https://gemini.google.com/share/0fc71255d03c" target="_blank" class="recurso-card">
+      <div class="recurso-icon">🤖</div>
+      <div class="recurso-name">Asistente IA</div>
+      <div class="recurso-desc">Tu Gem de Gemini para dudas del curso</div>
+      <div class="recurso-arrow">→</div>
+    </a>
+    <a href="https://notebooklm.google.com/notebook/b187d554-e2d1-4c8a-9789-c63d4d2c172d" target="_blank" class="recurso-card">
+      <div class="recurso-icon">🧠</div>
+      <div class="recurso-name">NotebookLM</div>
+      <div class="recurso-desc">Base de conocimiento del programa</div>
+      <div class="recurso-arrow">→</div>
+    </a>
+    <a href="leaderboard.html" class="recurso-card">
+      <div class="recurso-icon">🏆</div>
+      <div class="recurso-name">Leaderboard</div>
+      <div class="recurso-desc">Tu posición en el ranking del equipo</div>
+      <div class="recurso-arrow">→</div>
+    </a>
+  </div>
+</section>
+<!-- FOOTER -->
+<footer class="level-footer">
+  <div class="footer-brand">ONE <span>HALF</span> ACADEMY</div>
+  <div class="footer-nav">
+    <a href="index.html">Inicio</a>
+    <a href="nivel-2.html">Nivel 2 →</a>
+    <a href="leaderboard.html">Ranking</a>
+    <a href="biblioteca.html">Biblioteca</a>
+  </div>
+</footer>
+<script>
+  function toggleModule(id) {
+    const grid = document.getElementById('module-' + id);
+    const toggle = document.getElementById('toggle-' + id);
+    const isOpen = grid.classList.contains('open');
+    grid.classList.toggle('open', !isOpen);
+    toggle.classList.toggle('open', !isOpen);
+    toggle.textContent = isOpen ? '+' : '\u00d7';
+  }
+  const reveals = document.querySelectorAll('.reveal');
+  const io = new IntersectionObserver((entries) => {
+    entries.forEach(e => {
+      if (e.isIntersecting) { e.target.classList.add('visible'); io.unobserve(e.target); }
+    });
+  }, { threshold: 0.05 });
+  reveals.forEach(el => io.observe(el));
+  toggleModule('tasks');
+</script>
+</body>
+</html>
